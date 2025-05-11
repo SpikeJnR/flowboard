@@ -1,6 +1,13 @@
-import { Link, Outlet } from 'react-router-dom';
+import {Link, Outlet, useNavigate} from 'react-router-dom';
+import {AppRoute, AuthorizationStatus} from '../../utils/const.ts';
+import {useAppSelector} from '../../hooks';
+import {getAuthStatus} from '../../store/user-slice/user-selectors.ts';
 
 const Layout = () => {
+
+    const navigate = useNavigate();
+    const authStatus = useAppSelector(getAuthStatus);
+
     return(
       <div className='page page__gray page__main'>
         <header className='header'>
@@ -13,9 +20,14 @@ const Layout = () => {
                   </p>
                 </Link>
             </div>
-            <div className='header__right'>
-              <button className='header__logo-button button-large button'>LOGIN</button>
-            </div>
+            { authStatus === AuthorizationStatus.AUTH
+              ? <p> user info</p>
+              : (
+                <div className='header__right'>
+                  <button onClick={() => navigate(AppRoute.LOGIN)} className='header__logo-button button-large button'>LOGIN</button>
+                </div>
+              )
+            }
 
           </div>
         </header>
