@@ -1,13 +1,24 @@
 import './App.css'
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Layout from "./components/layout";
+import {Fragment} from "react";
 
 function App() {
 
 
   return (
-    <>
-        <h1> </h1>
-    </>
-  )
-}
+    <Fragment>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path = '/'
+          element = {<Layout />}
+          >
+        </Route>
+      </Routes>
+      </BrowserRouter>
+    </Fragment>
+  );
+};
 
-export default App
+export default App;

@@ -1,0 +1,13 @@
+root = true  # Указывает, что это корневой конфиг (поиск выше этого файла прекращается)
+
+[*]  # Применяется ко всем файлам
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+quote_type = single
+
+[*.md]  # Специальные правила для Markdown-файлов
+trim_trailing_whitespace = false
