@@ -1,12 +1,26 @@
 import {Link, Outlet, useNavigate} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../utils/const.ts';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {getAuthStatus} from '../../store/user-slice/user-selectors.ts';
+import {auth} from '../../firebase.ts';
+import {checkAuthAction} from '../../store/user-slice/user-api-actions.ts';
 
 const Layout = () => {
 
     const navigate = useNavigate();
     const authStatus = useAppSelector(getAuthStatus);
+
+    const dispatch = useAppDispatch();
+
+    const logout = async () => {
+      try {
+        await auth.signOut();
+        dispatch(checkAuthAction());
+        navigate(AppRoute.ROOT);
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
     return(
       <div className='page page__gray page__main'>
@@ -21,7 +35,11 @@ const Layout = () => {
                 </Link>
             </div>
             { authStatus === AuthorizationStatus.AUTH
-              ? <p> user info</p>
+              ? (
+                <div className='header__right'>
+                  <button onClick={logout} className='header__logo-button button-large button'>LOGOUT</button>
+                </div>
+              )
               : (
                 <div className='header__right'>
                   <button onClick={() => navigate(AppRoute.LOGIN)} className='header__logo-button button-large button'>LOGIN</button>
