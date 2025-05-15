@@ -1,7 +1,7 @@
 import {Link, Outlet, useLocation, useNavigate} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../utils/const.ts';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import {getAuthStatus} from '../../store/user-slice/user-selectors.ts';
+import {getAuthStatus, getUserEmail} from '../../store/user-slice/user-selectors.ts';
 import {auth} from '../../firebase.ts';
 import {checkAuthAction} from '../../store/user-slice/user-api-actions.ts';
 
@@ -10,6 +10,7 @@ const Layout = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const authStatus = useAppSelector(getAuthStatus);
+    const email = useAppSelector(getUserEmail);
 
 
 
@@ -35,6 +36,7 @@ const Layout = () => {
             <span className="logo-board">Board</span>
           </Link>
           <div className='layout__nav'>
+            <div>{email}</div>
             {
               authStatus === AuthorizationStatus.AUTH
                 ? <button onClick={logout} className='layout__button button-large button'>LOGOUT</button>

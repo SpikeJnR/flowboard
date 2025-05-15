@@ -21,9 +21,9 @@
 }
 
 .login:before {
-  top: 5%;
-  left: 15%;
-  transform: rotate(45deg);
+  top: 10%;
+  left: 20%;
+  transform: rotate(90deg);
 }
 
 .login:after {
@@ -125,6 +125,22 @@ input {
   transition: all 0.2s ease;
 }
 
+/* Убираем стили автозаполнения в Chrome и других WebKit-браузерах */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important; /* Цвет фона */
+  -webkit-text-fill-color: black !important; /* Цвет текста */
+  caret-color: black !important;
+  transition: background-color 5000s ease-in-out 0s; /* Хак для отключения цвета */
+}
+
+/* Для Firefox */
+input:-moz-autofill {
+  background-color: #fff !important;
+}
+
 input:focus {
   outline: none;
   border-color: #7677f4;
@@ -161,16 +177,20 @@ input:focus + label {
   color: var(--color-text-secondary);
 }
 
-.login__signup-link {
+.login__signup-button {
   color: var(--color-blue);
   text-decoration: underline;
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-.login__signup-link:hover {
+.login__signup-button:hover {
   opacity: 0.7;
 }
 
-.login__signup-link:active {
+.login__signup-button:active {
   opacity: var(--color-blue-darker);
 }
 
@@ -184,4 +204,19 @@ input:focus + label {
 
 .login-man {
   margin-bottom: 20px;
+}
+
+.password__toggle {
+  border: none;
+  width: 60px;
+  height: 40px;
+  background-color: transparent;
+  position: absolute;
+  top: 38%;
+  left: 83%;
+  cursor: pointer;
+}
+
+.password__icon {
+  margin: 0 auto;
 }
