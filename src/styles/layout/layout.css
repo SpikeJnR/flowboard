@@ -1,0 +1,11 @@
+.layout {
+  max-width: 1400px;
+  margin: auto;
+  min-height: 100vh;
+}
+
+.layout__header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 90px 20px 90px;
+}
