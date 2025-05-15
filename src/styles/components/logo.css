@@ -1,0 +1,45 @@
+.logo {
+  position: relative;
+  font-size: 42px;
+  text-decoration: none;
+}
+
+.logo:hover {
+  opacity: 0.7;
+}
+
+.layout__logo:after,
+.layout__logo:before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  border-radius: 3px;
+}
+.layout__logo:after {
+  top: 5px;
+  left: -25px;
+  height: 40px;
+  transform: rotate(45deg);
+  background-image: var(--gradient-red);
+}
+
+.layout__logo:before {
+  top: 18px;
+  left: -41px;
+  height: 24px;
+  transform: rotate(-45deg);
+  background-color: var(--color-accent-purple-darker);
+}
+
+.logo-flow {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  padding-left: 20px;
+}
+
+.logo-board {
+  font-weight: 700;
+  background: var(--gradient-red);
+  background-clip: text;
+  color: transparent;
+}

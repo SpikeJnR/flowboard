@@ -1,0 +1,57 @@
+.button {
+  padding: 16px;
+  cursor: pointer;
+}
+
+.button:active {
+  transform: scale(0.95);
+  transition: transform 0.2s;
+}
+
+.button-large {
+  width: 300px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.layout__button {
+  padding: 12px 24px;
+  border-radius: 5px;
+  border: 3px solid transparent;
+  background:
+    linear-gradient(var(--color-bg-primary), var(--color-bg-primary)) padding-box,
+    linear-gradient(45deg, var(--color-accent-purple-light), var(--color-accent-purple)) border-box;
+  color: var(--color-accent-purple);
+}
+
+.layout__button:hover {
+  background: var(--color-accent-purple);
+  color: var(--color-bg-primary);
+  cursor: pointer;
+}
+
+.blue__button {
+  border: none;
+  color: var(--color-bg-secondary);
+  background: var(--color-blue);
+  border-radius: 10px;
+  width: 100%;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.blue__button:hover {
+  background-color: var(--color-blue-darker);
+}
+
+.login__btn-google {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  background-color: var(--color-bg-secondary);
+}
+
+.login__btn-google:hover {
+  background-color: var(--color-bg-primary);
+}
