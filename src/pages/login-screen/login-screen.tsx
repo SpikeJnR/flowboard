@@ -38,11 +38,11 @@ const LoginScreen = () => {
             <h3 className='login__subtitle'>Please enter login details below</h3>
 
             <form className='login__form-group'>
-              <label className='email__label' htmlFor='email__input'>Email</label>
               <input className='email__input input' type='email' placeholder='Enter the email' id='email__input' />
+              <label className='email__label' htmlFor='email__input'>Email</label>
 
-              <label className='password__label' htmlFor='password__input'>Password</label>
               <input className='password__input input' type='password' placeholder='Enter the password' id='password__input' />
+              <label className='password__label' htmlFor='password__input'>Password</label>
 
               <button type='submit' className='button blue__button'>
                 Sign in

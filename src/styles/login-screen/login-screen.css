@@ -46,7 +46,7 @@
 
 .login__left-section {
   border-radius: 10px;
-  padding: 20px;
+  padding: 40px 20px 20px 20px;
 }
 
 .login__right-section {
@@ -86,8 +86,12 @@
   height: 50px;
   border-radius: 10px;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   border: 2px solid var(--color-text-secondary);
+}
+
+.email__input {
+  margin-bottom: 40px;
 }
 
 .password__input {
@@ -99,6 +103,21 @@
   background-color: var(--color-bg-secondary);
 }
 
+.email__label,
+.password__label {
+  position: absolute;
+}
+
+.email__label {
+  top: -7%;
+  left: 3%;
+}
+
+.password__label {
+  top: 29%;
+  left: 3%;
+}
+
 input {
   padding: 10px;
   border: 1px solid #ccc;
@@ -108,8 +127,11 @@ input {
 
 input:focus {
   outline: none;
-  border-color: #7677f4; /* фиолетовая рамка */
-  background-color: #f0f4ff; /* светло-голубой фон */
+  border-color: #7677f4;
+}
+
+input:focus + label {
+  color: var(--color-accent-purple);
 }
 
 .login__divider {

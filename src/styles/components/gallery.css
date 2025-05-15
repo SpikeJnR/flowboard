@@ -37,8 +37,8 @@
 .carousel__nav-button {
   background-color: var(--color-bg-primary);
   border: none;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   font-size: 14px;
   color: white;

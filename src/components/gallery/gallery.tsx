@@ -10,9 +10,9 @@ const Gallery = () => {
   ]
 
   const titles = [
-    'Turn chaos into a clear board.',
-    'See your work flow — clearly and beautifully.',
-    'Take control of your projects today.',
+    'Turn chaos into a clear board',
+    'See your work flow — clearly and beautifully',
+    'Take control of your projects today',
 
   ]
 
