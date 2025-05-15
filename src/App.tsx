@@ -8,8 +8,6 @@ import {checkAuthAction} from './store/user-slice/user-api-actions.ts';
 import {getAuthStatus} from './store/user-slice/user-selectors.ts';
 import LoginScreen from './pages/login-screen';
 
-
-
 function App() {
 
   const dispatch = useAppDispatch();
@@ -26,8 +24,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path = {AppRoute.ROOT} element = {<Layout />}>
-            <Route path = {AppRoute.LOGIN} element = {<LoginScreen />}>
-            </Route>
+            <Route path = {AppRoute.LOGIN} element = {<LoginScreen />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
