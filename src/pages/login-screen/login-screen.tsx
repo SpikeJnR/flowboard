@@ -7,7 +7,8 @@ import { AppRoute} from '../../utils/const.ts';
 import Gallery from '../../components/gallery';
 import {useState} from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { sendEmailVerification } from 'firebase/auth';
+import { sendEmailVerification, signInWithEmailAndPassword } from 'firebase/auth';
+import * as React from 'react';
 
 const LoginScreen = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -53,6 +54,18 @@ const LoginScreen = () => {
     }
   }
 
+  const signIn = async (evt: React.FormEvent) =>  {
+    evt.preventDefault();
+    await signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        dispatch(checkAuthAction())
+        navigate(AppRoute.ROOT);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+  }
+
   return (
     <section className='login login__screen'>
       <div className='login__logo-container'>
@@ -67,11 +80,11 @@ const LoginScreen = () => {
             <h1 className='login__title'>{ isLogin ? 'Welcome Back!' : 'Create your account' }</h1>
             <h3 className='login__subtitle'>{isLogin ? 'Please enter login details below' : 'Fill in the form to start using FlowBoard'}</h3>
 
-            <form className='login__form-group' onSubmit={isLogin ? login : handleRegisterFormSubmit}>
+            <form className='login__form-group' onSubmit={isLogin ? signIn : handleRegisterFormSubmit}>
               <input className='email__input input' type='email' placeholder='Enter the email' id='email__input' onChange={(evt) => setEmail(evt.target.value)} required/>
               <label className='email__label' htmlFor='email__input'>Email</label>
 
-              <input className='password__input input' type='password' placeholder='Enter the password' id='password__input' onChange={(evt) => setPassword(evt.target.value)} required />
+              <input className='password__input input' type='password' placeholder='Enter the password' id='password__input' onChange={(evt) => setPassword(evt.target.value)} required pattern={'^[A-Za-z0-9]{8,30}$'}  title="Пароль должен иметь длинну от 8 до 30 символов. И содержать только латинские цифры и букы"/>
               <label className='password__label' htmlFor='password__input'>Password</label>
 
               <button className='password__toggle' type='button' aria-label='show password' onClick={togglePasswordVisibility}>
