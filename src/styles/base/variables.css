@@ -1,15 +1,16 @@
 :root {
-  --color-bg-primary: #F5F5F5;       /* Основной фон страницы и карточек */
-  --color-bg-secondary: #FFFFFF;     /* Вторичный фон: боковые панели, ховер-эффекты */
-  --color-accent-purple: #7677F4;       /* Основной акцент: кнопки, важные действия */
-  --color-accent-purple-light: #9B9BFF; /* Вторичный акцент: ховер, доп. элементы */
-  --color-accent-purple-darker: #7474F6;/* Дополнительный красный */
-  --color-text-primary: #2D3436;     /* Основной текст: заголовки, контент */
-  --color-text-secondary: #636E72;   /* Вторичный текст: подписи, неактивное */
-  --color-blue: #3938E5;           /* Границы: разделители, обводки */
+  --color-bg-primary: #F5F5F5;
+  --color-bg-secondary: #FFFFFF;
+  --color-accent-purple: #7677F4;
+  --color-accent-purple-light: #9B9BFF;
+  --color-accent-purple-darker: #7474F6;
+  --color-text-primary: #2D3436;
+  --color-text-secondary: #636E72;
+  --color-blue: #3938E5;
   --color-blue-darker: #1A1AC7;
+  --color-blue-dark-purple: #1F0059;
   /* Градиенты */
-  --gradient-red: linear-gradient(var(--color-accent-purple-light), var(--color-accent-purple-darker));
+  --gradient-purple: linear-gradient(var(--color-accent-purple-light), var(--color-accent-purple-darker));
 
   /* Шрифты */
   --font-main: 'Roboto', sans-serif;
