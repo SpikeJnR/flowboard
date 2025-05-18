@@ -45,13 +45,15 @@
 
 .board {
   width: 425px;
-
-  border: 2px dashed var(--color-accent-purple);
+  height: 1000px;
+  border: 3px dashed var(--color-accent-purple-light);
   border-radius: 15px;
+  padding: 10px;
+  overflow-y: auto;
 }
 
 .board__title {
-  color: var(--color-accent-purple);
+  color: var(--color-accent-purple-light);
 }
 
 .board__button {
@@ -59,7 +61,7 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  border: 3px solid var(--color-accent-purple);
+  border: 3px solid var(--color-accent-purple-light);
   position: relative;
   cursor: pointer;
 }
@@ -67,8 +69,12 @@
 .board__header {
   display: flex;
   justify-content: space-between;
-  padding: 20px 30px;
+  padding: 10px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  margin-bottom: 10px;
 }
+
 
 .board__button:after,
 .board__button:before {
@@ -79,7 +85,7 @@
   left: 50%;
   width: 3px;
   height: 20px;
-  background-color: var(--color-accent-purple);
+  background-color: var(--color-accent-purple-light);
   transform: translate(-50%, -50%);
 }
 

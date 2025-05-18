@@ -6,6 +6,7 @@
 @import 'styles/login-screen/login-screen.css';
 @import 'styles/components/gallery.css';
 @import 'styles/board-screen/board-screen.css';
+@import 'styles/components/task.css';
 
 
 @font-face {
