@@ -35,7 +35,7 @@ const LoginScreen = () => {
     signInWithPopup(auth, provider)
       .then(() => {
         dispatch(checkAuthAction());
-        navigate(AppRoute.ROOT);
+        navigate(AppRoute.BOARDS);
       })
       .catch((error) => {
         console.error('Ошибка входа через Google:', error.message);
@@ -59,7 +59,7 @@ const LoginScreen = () => {
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         dispatch(checkAuthAction())
-        navigate(AppRoute.ROOT);
+        navigate(AppRoute.BOARDS);
       })
       .catch((error) => {
         console.error(error);

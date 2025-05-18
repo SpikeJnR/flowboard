@@ -7,6 +7,8 @@ import {useAppDispatch, useAppSelector} from './hooks';
 import {checkAuthAction} from './store/user-slice/user-api-actions.ts';
 import {getAuthStatus} from './store/user-slice/user-selectors.ts';
 import LoginScreen from './pages/login-screen';
+import MainScreen from './pages/main-screen';
+import BoardsScreen from './pages/boards-screen';
 
 function App() {
 
@@ -24,8 +26,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path = {AppRoute.ROOT} element = {<Layout />}>
+            <Route index element={<MainScreen />}></Route>
+            <Route path = {AppRoute.BOARDS} element = {<BoardsScreen /> }></Route>
             <Route path = {AppRoute.LOGIN} element = {<LoginScreen />}></Route>
           </Route>
+
         </Routes>
       </BrowserRouter>
     </Fragment>

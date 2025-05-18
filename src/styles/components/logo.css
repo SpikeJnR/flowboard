@@ -16,16 +16,16 @@
   border-radius: 3px;
 }
 .layout__logo:after {
-  top: 5px;
-  left: -25px;
+  top: 10px;
+  left: -10px;
   height: 40px;
   transform: rotate(45deg);
-  background-image: var(--gradient-red);
+  background-image: var(--gradient-purple);
 }
 
 .layout__logo:before {
-  top: 18px;
-  left: -41px;
+  top: 24px;
+  left: -27px;
   height: 24px;
   transform: rotate(-45deg);
   background-color: var(--color-accent-purple-darker);
@@ -39,7 +39,7 @@
 
 .logo-board {
   font-weight: 700;
-  background: var(--gradient-red);
+  background: var(--gradient-purple);
   background-clip: text;
   color: transparent;
 }
