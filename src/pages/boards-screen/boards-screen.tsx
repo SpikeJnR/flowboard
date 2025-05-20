@@ -1,15 +1,17 @@
 import {useEffect, useState} from 'react';
 import type { TaskType } from '../../types/task-type';
-
 import TaskForm from '../../components/task-form';
-import {addTask, deleteTask, subscribeToTasks} from '../../services/taskService.ts';
+import {addTask, deleteTask, subscribeToTasks, updateTask} from '../../services/taskService.ts';
+import TaskFormEdit from '../../components/task-from-edit';
 
 const BoardsScreen = () => {
   const [tasks, setTasks] = useState<TaskType[]>([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isAddTaskOpen, setIsAddTaskOpen] = useState(false);
+  const [isEditTaskOpen, setIsEditTaskOpen] = useState(false);
+  const [selectedTask, setSelectedTask] = useState<TaskType | null>(null);
 
   useEffect(() => {
-    const unsubscribe = subscribeToTasks((data) => {
+    const unsubscribe = subscribeToTasks((data: TaskType[]) => {
       setTasks(data);
     });
 
@@ -17,26 +19,45 @@ const BoardsScreen = () => {
   }, []);
 
 
-  const addCard = async (newTask: TaskType) => {
-    const task: TaskType = {
+  const addCard = async (newTask: Omit<TaskType, 'id'>) => {
+    const task:  Omit<TaskType, 'id'> = {
       ...newTask,
     };
     await addTask(task);
-    // setTasks(prevTask => [...prevTask, task]);
   }
 
   const removeTask = async (id: string) => {
     try {
       await deleteTask(id);
-      setTasks(prev => prev.filter(task => task.id !== id));
     } catch (error) {
-      console.error('Failed to delete task:', error);
+      console.error('Failed to delete task-from-edit:', error);
+      throw error;
+    }
+  }
+
+  const updateTaskElement = async (task: TaskType) => {
+    try {
+      await updateTask(task);
+    }catch (error) {
+      console.error('Failed to update task-from-edit:', error);
     }
   }
 
   return (
     <div className='boards'>
       <section className='boards__container'>
+        <div className='edit-task-form'>
+          {
+            isEditTaskOpen && selectedTask ? (
+              <TaskFormEdit
+                task={selectedTask}
+                removeTask={removeTask}
+                onClose={() => setIsEditTaskOpen(false)}
+                updateTask={updateTaskElement}
+              />
+            ) : null
+          }
+        </div>
         <div className='boards__control'></div>
         <div className='boards__wrapper'>
           <div className='boards__todo board'>
@@ -44,7 +65,7 @@ const BoardsScreen = () => {
               <h2 className='board__title'>To Do</h2>
               <button
                 className='board__button'
-                onClick={() => setIsOpen(true)}
+                onClick={() => setIsAddTaskOpen(true)}
               ></button>
             </div>
             <div className='card__list'>
@@ -56,7 +77,11 @@ const BoardsScreen = () => {
                     <p className='task__title'>{task.title}</p>
                     <button
                       className='task__full-size'
-                      onClick={() => removeTask(task.id)}
+                      onClick={() => {
+                        setIsEditTaskOpen(true);
+                        setSelectedTask(task);
+
+                      }}
                     >
                       <img
                         className='more_icon'
@@ -68,11 +93,11 @@ const BoardsScreen = () => {
                 ))}
             </div>
             <div className='board__edit-form'>
-              {isOpen && (
+              {isAddTaskOpen && (
                 <TaskForm
                   addTaskForm={addCard}
                   status="todo"
-                  onClose={() => setIsOpen(false)}
+                  onClose={() => setIsAddTaskOpen(false)}
                 />
               )}
             </div>

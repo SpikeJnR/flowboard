@@ -20,7 +20,6 @@ const TaskForm = ({ addTaskForm, status, onClose }: TaskFormProps) => {
     });
     setTitle('');
     setDescription('');
-
   };
 
   return (
