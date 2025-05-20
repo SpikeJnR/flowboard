@@ -1,22 +1,37 @@
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import type { TaskType } from '../../types/task-type';
-import { nanoid } from 'nanoid';
+
 import TaskForm from '../../components/task-form';
+import {addTask, deleteTask, subscribeToTasks} from '../../services/taskService.ts';
 
 const BoardsScreen = () => {
   const [tasks, setTasks] = useState<TaskType[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  const addCard = (newTask: Omit<TaskType, 'id'>) => {
+  useEffect(() => {
+    const unsubscribe = subscribeToTasks((data) => {
+      setTasks(data);
+    });
+
+    return () => unsubscribe(); // Отписка при размонтировании
+  }, []);
+
+
+  const addCard = async (newTask: TaskType) => {
     const task: TaskType = {
-      id: nanoid(),
       ...newTask,
     };
-    setTasks(prevTask => [...prevTask, task]);
+    await addTask(task);
+    // setTasks(prevTask => [...prevTask, task]);
   }
 
-  const removeTask = (id: string) => {
-    setTasks(prevTask => prevTask.filter(task => task.id !== id));
+  const removeTask = async (id: string) => {
+    try {
+      await deleteTask(id);
+      setTasks(prev => prev.filter(task => task.id !== id));
+    } catch (error) {
+      console.error('Failed to delete task:', error);
+    }
   }
 
   return (
