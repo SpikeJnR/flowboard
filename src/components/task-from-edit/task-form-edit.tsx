@@ -28,7 +28,7 @@ const TaskFormEdit: React.FC<TaskFormEditProps> = ({task, removeTask, onClose, u
       <textarea className='edit-form__description' defaultValue={task.description} onChange={handleChange} name='description'></textarea>
       <select
         name='status'
-        value={editedTask.status}
+        value={editedTask.boardType}
         onChange={handleChange}
         className='edit-form__selected-board'
       >

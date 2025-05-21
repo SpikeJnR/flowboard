@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import type { TaskType } from '../../types/task-type';
+import type {TaskType} from '../../types/task-type';
 import TaskForm from '../../components/task-form';
 import {addTask, deleteTask, subscribeToTasks, updateTask} from '../../services/taskService.ts';
 import TaskFormEdit from '../../components/task-from-edit';
@@ -19,8 +19,8 @@ const BoardsScreen = () => {
   }, []);
 
 
-  const addCard = async (newTask: Omit<TaskType, 'id'>) => {
-    const task:  Omit<TaskType, 'id'> = {
+  const addCard = async (newTask: Omit<TaskType, 'id' | 'completedStatus'>) => {
+    const task: Omit<TaskType, 'id' | 'completedStatus'> = {
       ...newTask,
     };
     await addTask(task);
@@ -38,9 +38,14 @@ const BoardsScreen = () => {
   const updateTaskElement = async (task: TaskType) => {
     try {
       await updateTask(task);
-    }catch (error) {
+    } catch (error) {
       console.error('Failed to update task-from-edit:', error);
     }
+  }
+
+  const getChecked = (task: TaskType) => {
+    task.completedStatus = !task.completedStatus;
+    updateTaskElement(task);
   }
 
   return (
@@ -70,11 +75,11 @@ const BoardsScreen = () => {
             </div>
             <div className='card__list'>
               {tasks
-                .filter(task => task.status === 'todo')
+                .filter(task => task.boardType === 'todo')
                 .map(task => (
                   <div className='task' key={task.id}>
-                    <button className='task__button task__checked'/>
-                    <p className='task__title'>{task.title}</p>
+                    <button className={`task__button ${task.completedStatus ? 'task__checked' : null}`} onClick={() => getChecked(task)} />
+                    <p className={`task__title ${task.completedStatus ? 'task__title-checked' : null}`}>{task.title}</p>
                     <button
                       className='task__full-size'
                       onClick={() => {

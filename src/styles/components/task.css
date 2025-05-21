@@ -12,12 +12,11 @@
 .task__button {
   width: 30px;
   height: 30px;
-  border: 2px solid var(--color-accent-purple);
+  border: 2px solid var(--color-accent-purple-light);
   background-color: transparent;
   border-radius: 50%;
   margin-right: 10px;
   cursor: pointer;
-  border: none;
 }
 
 .task__checked {
@@ -26,6 +25,7 @@
   background-position: center;
   background-size: 60%;
   background-color: var(--color-accent-purple-light);
+  border: none;
 }
 
 .task__title {
@@ -69,4 +69,9 @@
   width: 500px;
   height: 500px;
   background-color: var(--color-accent-purple-light);
+}
+
+.task__title-checked {
+  color: var(--color-accent-purple-light);
+  text-decoration: line-through;
 }

@@ -2,7 +2,7 @@ import {dataBase} from '../firebase.ts';
 import { addDoc, getDocs, collection, deleteDoc, doc, onSnapshot, updateDoc} from 'firebase/firestore';
 import type {TaskType} from '../types/task-type.ts';
 
-export const addTask = async (itemData:  Omit<TaskType, 'id'>) => {
+export const addTask = async (itemData:  Omit<TaskType, 'id' | 'completedStatus'>) => {
   try {
     const docRef = await addDoc(collection(dataBase, 'tasks'), itemData);
     return docRef;

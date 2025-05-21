@@ -2,8 +2,8 @@ import { useState } from 'react';
 import type {TaskType} from '../../types/task-type.ts';
 
 type TaskFormProps = {
-  addTaskForm: (task: Omit<TaskType, 'id'>) => void;
-  status: TaskType['status'];
+  addTaskForm: (task: Omit<TaskType, 'id' | 'completedStatus'>) => void;
+  status: TaskType['boardType'];
   onClose: () => void;
 };
 
@@ -16,7 +16,7 @@ const TaskForm = ({ addTaskForm, status, onClose }: TaskFormProps) => {
     addTaskForm({
       title,
       description,
-      status,
+      boardType: status,
     });
     setTitle('');
     setDescription('');
