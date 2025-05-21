@@ -17,9 +17,11 @@
   border-radius: 50%;
   margin-right: 10px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
-.task__checked {
+.task__checked,
+.task__button:hover {
   background-image: url('public/images/check.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -29,16 +31,37 @@
 }
 
 .task__title {
-  pading: 10px;
+  width: 100%;
+  align-content: center;
+  text-align: left;
+  min-height: 70px;
+  padding: 10px;
   margin-right: 10px;
   font-size: 24px;
   color: var(--color-accent-purple-light);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  max-height: 2.4em;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
+
+.task__doted {
+  background-color: var(--color-accent-purple-light);
+}
+
+
 
 .task__full-size {
   border: none;
   background-color: transparent;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .more_icon {

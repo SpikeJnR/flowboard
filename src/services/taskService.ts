@@ -26,7 +26,6 @@ export const getTasks = async () => {
 }
 
 export const subscribeToTasks = (callback: (tasks: TaskType[]) => void ) => {
-  console.log(callback);
   return onSnapshot(collection(dataBase, 'tasks'), (snapshot) => {
     const data = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()} as TaskType));
     callback(data);
