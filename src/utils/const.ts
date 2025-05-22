@@ -16,7 +16,7 @@ export const AuthorizationStatus = {
   UNKNOWN: 'unknown',
 }
 
-export const BoardType = {
+export const BoardCategory = {
   TODO: 'todo',
   IN_PROGRESS: 'in_progress',
   DONE: 'done',

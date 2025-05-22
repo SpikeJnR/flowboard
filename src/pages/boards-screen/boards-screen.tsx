@@ -1,9 +1,17 @@
 import {useEffect, useState} from 'react';
 import type {TaskType} from '../../types/task-type';
 import TaskForm from '../../components/task-form';
-import {addTask, deleteTask, subscribeToTasks, updateTask} from '../../services/taskService.ts';
+import {
+  addBoardSettings,
+  addTask,
+  deleteTask,
+  subscribeToBoardSettings,
+  subscribeToTasks,
+  updateTask
+} from '../../services/taskService.ts';
 import TaskFormEdit from '../../components/task-from-edit';
-import {BoardType} from '../../utils/const.ts';
+import {BoardCategory} from '../../utils/const.ts';
+import type {BoardType} from '../../types/board-type';
 
 const BoardsScreen = () => {
   const [tasks, setTasks] = useState<TaskType[]>([]);
@@ -11,15 +19,24 @@ const BoardsScreen = () => {
   const [isEditTaskOpen, setIsEditTaskOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState<TaskType | null>(null);
   const [selectedBoardType, setSelectedBoardType] = useState<string | null>(null);
+  const [showCompleted, setShowCompleted] = useState(false);
 
   useEffect(() => {
     const unsubscribe = subscribeToTasks((data: TaskType[]) => {
       setTasks(data);
     });
 
-    return () => unsubscribe(); // Отписка при размонтировании
+    return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    const unsubscribe = subscribeToBoardSettings((boards: BoardType[]) => {
+      if (boards.length > 0) {
+        setShowCompleted(boards[0].completedStatus);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   const addCard = async (newTask: Omit<TaskType, 'id' | 'completedStatus'>) => {
     const task: Omit<TaskType, 'id' | 'completedStatus'> = {
@@ -51,6 +68,19 @@ const BoardsScreen = () => {
     updateTaskElement(task);
   }
 
+  const handleBoardSettings = async (boardData: BoardType) => {
+    try {
+      setShowCompleted(prev => !prev);
+      await addBoardSettings({
+        ...boardData,
+        completedStatus: !showCompleted
+      });
+    } catch (error) {
+      setShowCompleted(prev => !prev);
+      console.error('Failed to update board settings:', error);
+    }
+  }
+
   return (
     <div className='boards'>
       <section className='boards__container'>
@@ -66,10 +96,18 @@ const BoardsScreen = () => {
             ) : null
           }
         </div>
-        <div className='boards__control'></div>
+        <div className='boards__control'>
+          <div className='completed'>
+            <span className='completed__title'> Completed task</span>
+            <button className={`completed__button ${ !showCompleted ? 'completed__button-active' : null}`} onClick={() => (
+              handleBoardSettings({id: 'currentBoardSettings', completedStatus: (!showCompleted)})
+            )}
+            />
+          </div>
+        </div>
         <div className='boards__wrapper'>
           {
-            Object.values(BoardType).map((board) => (
+            Object.values(BoardCategory).map((board) => (
               <div className={`boards__${board} board`} key={board}>
                 <div className='board__header'>
                   <h2 className='board__title'>{board}</h2>
@@ -84,7 +122,7 @@ const BoardsScreen = () => {
                 </div>
                 <div className='card__list'>
                   {tasks
-                    .filter(task => task.boardType === board)
+                    .filter(task => task.boardType === board && !(task.completedStatus === showCompleted))
                     .map(task => (
                       <div className='task' key={task.id}>
                         <button className={`task__button ${task.completedStatus ? 'task__checked' : null}`} onClick={() => getChecked(task)}/>
