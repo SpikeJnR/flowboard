@@ -7,6 +7,7 @@
 @import 'styles/components/gallery.css';
 @import 'styles/board-screen/board-screen.css';
 @import 'styles/components/task.css';
+@import 'styles/loading-screen/loading-screen.css';
 
 
 @font-face {

@@ -9,6 +9,7 @@ import {getAuthStatus} from './store/user-slice/user-selectors.ts';
 import LoginScreen from './pages/login-screen';
 import MainScreen from './pages/main-screen';
 import BoardsScreen from './pages/boards-screen';
+import PrivateRoute from './components/private-route';
 
 function App() {
 
@@ -27,7 +28,13 @@ function App() {
         <Routes>
           <Route path = {AppRoute.ROOT} element = {<Layout />}>
             <Route index element={<MainScreen />}></Route>
-            <Route path = {AppRoute.BOARDS} element = {<BoardsScreen /> }></Route>
+            <Route path = {AppRoute.BOARDS}
+              element = {
+                <PrivateRoute>
+                  <BoardsScreen />
+                </PrivateRoute>
+              }>
+            </Route>
             <Route path = {AppRoute.LOGIN} element = {<LoginScreen />}></Route>
           </Route>
 
