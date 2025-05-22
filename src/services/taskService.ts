@@ -1,6 +1,7 @@
 import {dataBase} from '../firebase.ts';
-import { addDoc, getDocs, collection, deleteDoc, doc, onSnapshot, updateDoc} from 'firebase/firestore';
+import { addDoc, getDocs, collection, deleteDoc, doc, onSnapshot, updateDoc, setDoc } from 'firebase/firestore';
 import type {TaskType} from '../types/task-type.ts';
+import type {BoardType} from '../types/board-type.ts';
 
 export const addTask = async (itemData:  Omit<TaskType, 'id' | 'completedStatus'>) => {
   try {
@@ -41,4 +42,27 @@ export const updateTask = async ( task: TaskType) => {
     console.error('Error updating document: ', error);
     throw error;
   }
+}
+
+
+export const addBoardSettings = async (boardData: BoardType) => {
+  try {
+    const docRef = doc(dataBase, 'boardSettings', 'currentBoardSettings');
+    await setDoc(docRef, boardData, { merge: true });
+    return docRef;
+  } catch (error) {
+    console.error('Error updating document: ', error);
+    throw error;
+  }
+}
+
+export const subscribeToBoardSettings = (callback: (boards: BoardType[]) => void) => {
+  return onSnapshot(collection(dataBase, 'boardSettings'), (snapshot) => {
+    const data = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    })) as BoardType[];
+
+    callback(data);
+  })
 }
