@@ -71,8 +71,11 @@ export const updateTask = async ( task: TaskType) => {
 
 
 export const addBoardSettings = async (boardData: BoardType) => {
+  const user = auth.currentUser;
+  if (!user) return () => {};
+
   try {
-    const docRef = doc(dataBase, 'boardSettings', 'currentBoardSettings');
+    const docRef = doc(dataBase, 'users', user.uid, 'boardSettings', 'currentBoardSettings');
     await setDoc(docRef, boardData, { merge: true });
     return docRef;
   } catch (error) {
