@@ -20,7 +20,6 @@ const TaskFormEdit: React.FC<TaskFormEditProps> = ({task, removeTask, onClose, u
     deadline: task.deadline || null
   });
 
-  console.log(editedTask.priority);
   const handleTaskChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setEditedTask((prev) => ({...prev, [e.target.name]: e.target.value}));
   };
