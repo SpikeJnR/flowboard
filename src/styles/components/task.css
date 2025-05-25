@@ -1,12 +1,21 @@
-.task {
+.task__wrapper {
   border: 2px solid var(--color-accent-purple-light);
   border-radius: 15px;
   padding: 10px;
+  margin-bottom: 20px;
+}
+
+.task__main {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
+}
+
+.task__bottom {
+  display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  padding: 0 55px;
 }
 
 .task__button {
@@ -97,4 +106,44 @@
 .task__title-checked {
   color: var(--color-accent-purple-light);
   text-decoration: line-through;
+}
+
+.task__deadline {
+  display: flex;
+}
+
+.calendar {
+  margin-right: 10px;
+}
+
+.deadline__title {
+  color: var(--color-accent-purple-darker);
+}
+
+.task__priority {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.task__priority-list {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 150px;
+  height: 100px;
+  background-color: var(--color-bg-secondary);
+}
+
+.task__priority-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+
+.priority__image,
+.priority__title {
+  pointer-events: none;
 }

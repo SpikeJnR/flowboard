@@ -10,7 +10,7 @@ import {
   updateTask
 } from '../../services/taskService.ts';
 import TaskFormEdit from '../../components/task-from-edit';
-import {BoardCategory} from '../../utils/const.ts';
+import {BoardCategory, Days} from '../../utils/const.ts';
 import type {BoardType} from '../../types/board-type';
 
 const BoardsScreen = () => {
@@ -121,25 +121,51 @@ const BoardsScreen = () => {
                   ></button>
                 </div>
                 <div className='card__list'>
-                  {tasks
-                    .filter(task => task.boardType === board && !(task.completedStatus === showCompleted))
+                  {
+                    tasks
+                    .filter(task => task.boardType === board && (!showCompleted || !task.completedStatus))
                     .map(task => (
-                      <div className='task' key={task.id}>
-                        <button className={`task__button ${task.completedStatus ? 'task__checked' : null}`} onClick={() => getChecked(task)}/>
-                        <span className={`task__title ${task.completedStatus ? 'task__title-checked' : null}`}>{task.title}</span>
-                        <button
-                          className='task__full-size'
-                          onClick={() => {
-                            setIsEditTaskOpen(true);
-                            setSelectedTask(task);
-                          }}
-                        >
-                          <img
-                            className='more_icon'
-                            src='/images/more.svg'
-                            alt="More options"
-                          />
-                        </button>
+                      <div className='task__wrapper' key={task.id}>
+                        <div className='task__main'>
+                          <button className={`task__button ${task.completedStatus ? 'task__checked' : null}`} onClick={() => getChecked(task)}/>
+                          <span className={`task__title ${task.completedStatus ? 'task__title-checked' : null}`}>{task.title}</span>
+                          <button
+                            className='task__full-size'
+                            onClick={() => {
+                              setIsEditTaskOpen(true);
+                              setSelectedTask(task);
+                            }}
+                          >
+                            <img
+                              className='more_icon'
+                              src='/images/more.svg'
+                              alt="More options"
+                            />
+                          </button>
+                        </div>
+                        {
+                          (
+                            <div className='task__bottom'>
+                              {
+                                task.deadline ? (
+                                  <span className='task__deadline' title='Task deadline'>
+                                      <img className='calendar' src='../public/images/calendar.svg' alt='calendar'/>
+                                      <span className='deadline__title'>{`${Days[task.deadline.getMonth()]} ${task.deadline.getDate()}`}</span>
+                                  </span>
+                                ) : null
+                              }
+                              {
+                                task.priority ? (
+                                  <span className='task__priority-item' title='Task priority'>
+                                      <img className='priority' src={`../public/images/flag${task.priority}.svg`} alt='priority'/>
+                                      <span className='priority__title'>Priority</span>
+                                  </span>
+                                ) : null
+                              }
+                            </div>
+                          )
+                        }
+
                       </div>
                     ))}
                 </div>

@@ -137,7 +137,7 @@
   background-color: var(--color-accent-purple-light);
   border-radius: 50%;
   border: 2px solid var(--color-bg-secondary);
-  animation: fadeOut 0.8s;
+  animation: completedOut 0.8s;
 }
 
 .completed__button-active:after {
@@ -147,13 +147,13 @@
   left: 55%;
   width: 15px;
   height: 15px;
-  animation: fadeIn 0.8s;
+  animation: completedIn 0.8s;
   background-color: var(--color-bg-secondary);
   border-radius: 50%;
   border: 2px solid var(--color-bg-secondary);
 }
 
-@keyframes fadeIn {
+@keyframes completedIn {
   from {
     transform: translateX(-137%);
   }
@@ -162,7 +162,7 @@
   }
 }
 
-@keyframes fadeOut {
+@keyframes completedOut {
   from {
     transform: translateX(137%);
   }

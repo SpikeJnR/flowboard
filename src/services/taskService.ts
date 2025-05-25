@@ -2,6 +2,7 @@ import {dataBase} from '../firebase.ts';
 import { addDoc, getDocs, collection, deleteDoc, doc, onSnapshot, updateDoc, setDoc } from 'firebase/firestore';
 import type {TaskType} from '../types/task-type.ts';
 import type {BoardType} from '../types/board-type.ts';
+import { Timestamp } from 'firebase/firestore';
 
 export const addTask = async (itemData:  Omit<TaskType, 'id' | 'completedStatus'>) => {
   try {
@@ -28,7 +29,13 @@ export const getTasks = async () => {
 
 export const subscribeToTasks = (callback: (tasks: TaskType[]) => void ) => {
   return onSnapshot(collection(dataBase, 'tasks'), (snapshot) => {
-    const data = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()} as TaskType));
+    const data = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+      deadline: doc.data().deadline instanceof Timestamp
+        ? doc.data().deadline.toDate()
+        : null,
+    } as TaskType));
     callback(data);
   });
 }

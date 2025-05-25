@@ -4,4 +4,6 @@ export type TaskType = {
   description?: string;
   boardType: string;
   completedStatus: boolean;
+  deadline?: Date | null;
+  priority: number | null;
 }
