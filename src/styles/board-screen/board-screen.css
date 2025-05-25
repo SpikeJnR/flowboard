@@ -94,7 +94,7 @@
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
-.card__list {
+.task__list {
   overflow-y: auto;
 }
 

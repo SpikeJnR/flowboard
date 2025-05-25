@@ -17,9 +17,9 @@ export const AuthorizationStatus = {
 }
 
 export const BoardCategory = {
-  TODO: 'todo',
-  IN_PROGRESS: 'in_progress',
-  DONE: 'done',
+  TODO: 'Todo',
+  IN_PROGRESS: 'In Progress',
+  DONE: 'Done',
 }
 
 export const Days: Record<number, string> = {

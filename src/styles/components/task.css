@@ -143,7 +143,7 @@
   align-items: center;
 }
 
-.priority__image,
+.task__priority-image,
 .priority__title {
   pointer-events: none;
 }

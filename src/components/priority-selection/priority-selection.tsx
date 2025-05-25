@@ -1,37 +1,39 @@
-import {Priority} from '../../utils/const.ts';
-import type {TaskType} from '../../types/task-type.ts';
 import type {Dispatch, SetStateAction} from 'react';
+import type {TaskType} from '../../types/task-type.ts';
+import {Priority} from '../../utils/const.ts';
 
-interface PrioritySelectionProps {
+type PrioritySelectionProps = {
   setEditedTask: Dispatch<SetStateAction<TaskType>>;
+  setShowPriorityPopover: Dispatch<SetStateAction<boolean>>;
 }
 
-const PrioritySelection = ({ setEditedTask }: PrioritySelectionProps) => {
+const PrioritySelection = ({ setEditedTask, setShowPriorityPopover }: PrioritySelectionProps) => {
 
   const handlePriorityClick = (evt: number) => {
     setEditedTask((prev:  TaskType )=> ({
       ...prev,
       priority: evt,
     }));
+    setShowPriorityPopover(false);
   };
 
   /* Returns a popover with a priority selection */
   return (
     <div className='task__priority-list'>
-      {Object.values(Priority).map((priority, index) => (
+      {Object.entries(Priority).map(([key, label], index) => (
         <div
           className='task__priority-item'
-          key={index}
+          key={key}
           data-priority={index + 1}
           onClick={() => handlePriorityClick(index + 1)}
         >
           <img
-            className='priority__image'
+            className='task__priority-image'
             src={`/images/flag${index + 1}.svg`}
-            alt='priority'
+            alt={`${label} priority icon`}
           />
           <p className='priority__title'>
-            {priority} priority
+            {label} priority
           </p>
         </div>
       ))}
