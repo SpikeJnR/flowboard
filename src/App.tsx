@@ -10,6 +10,7 @@ import LoginScreen from './pages/login-screen';
 import MainScreen from './pages/main-screen';
 import BoardsScreen from './pages/boards-screen';
 import PrivateRoute from './components/private-route';
+import TaskProvider from './contexts/task-context.tsx';
 
 function App() {
 
@@ -31,7 +32,9 @@ function App() {
             <Route path = {AppRoute.BOARDS}
               element = {
                 <PrivateRoute>
-                  <BoardsScreen />
+                  <TaskProvider>
+                    <BoardsScreen />
+                  </TaskProvider>
                 </PrivateRoute>
               }>
             </Route>

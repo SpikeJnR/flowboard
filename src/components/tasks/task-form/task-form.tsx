@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import type {TaskType} from '../../../types/task-type.ts';
+import {useTaskContext} from "../../../contexts/task-context.tsx";
 
 type TaskFormProps = {
-  addTaskForm: (task: Pick<TaskType, 'title' | 'description' | 'boardType'>) => void;
   status: TaskType['boardType'];
-  onClose: () => void;
 };
 
-const TaskForm = ({ addTaskForm, status, onClose }: TaskFormProps) => {
+const TaskForm = ({ status}: TaskFormProps) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const {addTask, setIsAddTaskOpen} = useTaskContext();
 
   const handleOnAddTask = (evt: React.FormEvent) => {
     evt.preventDefault();
-    addTaskForm({
+    addTask({
       title,
       description,
       boardType: status,
@@ -40,7 +40,7 @@ const TaskForm = ({ addTaskForm, status, onClose }: TaskFormProps) => {
       />
       <div className="form-buttons">
         <button type="submit">Add TaskItem</button>
-        <button type="button" onClick={onClose}>Cancel</button>
+        <button type="button" onClick={() => setIsAddTaskOpen(false)}>Cancel</button>
       </div>
     </form>
   );

@@ -5,15 +5,14 @@ import PrioritySelection from '../../priority-selection';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import * as React from 'react';
+import {useTaskContext} from '../../../contexts/task-context.tsx';
 
 interface TaskFormEditProps {
   task: TaskType;
-  removeTask: (id: string) => void;
-  onClose: () => void;
-  updateTask: (task: TaskType) => void;
 }
 
-const TaskFormEdit: React.FC<TaskFormEditProps> = ({task, removeTask, onClose, updateTask }) => {
+const TaskFormEdit: React.FC<TaskFormEditProps> = ({task}) => {
+  const { deleteTask, updateTask, setIsEditTaskOpen} = useTaskContext();
   const [showPriorityPopover, setShowPriorityPopover] = useState(false);
   const [editedTask, setEditedTask] = useState<TaskType>({
     ...task,
@@ -34,7 +33,7 @@ const TaskFormEdit: React.FC<TaskFormEditProps> = ({task, removeTask, onClose, u
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     updateTask(editedTask);
-    onClose();
+    setIsEditTaskOpen(false);
   };
 
   return (
@@ -104,8 +103,8 @@ const TaskFormEdit: React.FC<TaskFormEditProps> = ({task, removeTask, onClose, u
       <button
         className='delete__button button'
         onClick={() => {
-          onClose();
-          removeTask(task.id);
+          setIsEditTaskOpen(false);
+          deleteTask(task.id);
         }}
         type='button'
       >
@@ -119,7 +118,7 @@ const TaskFormEdit: React.FC<TaskFormEditProps> = ({task, removeTask, onClose, u
         Save
       </button>
 
-      <button className='edit-form__submit button' type='button' onClick={onClose}>Cancel</button>
+      <button className='edit-form__submit button' type='button' onClick={() => setIsEditTaskOpen(false)}>Cancel</button>
     </form>
   );
 }

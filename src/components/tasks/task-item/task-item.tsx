@@ -1,21 +1,20 @@
 import {Days, Priority} from '../../../utils/const.ts';
 import type {TaskType} from '../../../types/task-type.ts';
-import type {Dispatch, SetStateAction} from 'react';
+import {type Dispatch, type SetStateAction} from 'react';
+import {useTaskContext} from '../../../contexts/task-context.tsx';
 
 type TaskItemProps = {
-  tasks: TaskType[];
   board: string;
-  showCompleted: boolean;
-  updateTaskElement: (task: TaskType) => void;
-  setIsEditTaskOpen: Dispatch<SetStateAction<boolean>>;
   setSelectedTask: Dispatch<SetStateAction<TaskType | null>>;
 };
 
-const TaskItem = ({tasks, board, showCompleted, updateTaskElement, setIsEditTaskOpen, setSelectedTask} : TaskItemProps) => {
+const TaskItem = ({ board, setSelectedTask} : TaskItemProps) => {
+
+  const {tasks, showCompleted, updateTask, setIsEditTaskOpen} = useTaskContext();
 
   const getChecked = (task: TaskType) => {
     task.completedStatus = !task.completedStatus;
-    updateTaskElement(task);
+    updateTask(task);
   }
 
   return (
@@ -68,7 +67,6 @@ const TaskItem = ({tasks, board, showCompleted, updateTaskElement, setIsEditTask
                 </div>
               )
             }
-
           </div>
         ))}
     </>

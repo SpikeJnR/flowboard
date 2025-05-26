@@ -1,12 +1,15 @@
+import {useTaskContext} from "../../contexts/task-context.tsx";
+
 type BoardHeaderProps = {
   board: string;
-  setIsAddTaskOpen: (isOpen: boolean) => void;
+
   setSelectedBoardType: (boardType: string | null) => void;
 }
 
-
 /* Returns board header */
-const BoardHeader = ({board, setIsAddTaskOpen, setSelectedBoardType}: BoardHeaderProps) => {
+const BoardHeader = ({board, setSelectedBoardType}: BoardHeaderProps) => {
+  const{setIsAddTaskOpen} = useTaskContext();
+
   return (
     <div className='board__header'>
       <h2 className='board__title'>{board}</h2>
