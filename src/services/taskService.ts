@@ -1,5 +1,5 @@
 import {auth, dataBase} from '../firebase.ts';
-import { addDoc, getDocs, collection, deleteDoc, doc, onSnapshot, updateDoc, setDoc } from 'firebase/firestore';
+import { addDoc, getDocs, getDoc, collection, deleteDoc, doc, onSnapshot, updateDoc, setDoc } from 'firebase/firestore';
 import type {TaskType} from '../types/task-type.ts';
 import type {BoardType} from '../types/board-type.ts';
 import { Timestamp } from 'firebase/firestore';
@@ -97,3 +97,25 @@ export const subscribeToBoardSettings = (callback: (boards: BoardType[]) => void
     callback(data);
   })
 }
+
+export const getUserTheme = async (): Promise<string | null> => {
+  const user = auth.currentUser;
+  if (!user) return '';
+
+  const docRef = doc(dataBase, 'users', user.uid, 'preferences', 'theme');
+  const docSnap = await getDoc(docRef);
+  return docSnap.exists() ? docSnap.data().theme : null;
+}
+
+export const setUserTheme = async (theme: string | null) => {
+  const user = auth.currentUser;
+  if (!user) return;
+
+  try {
+    const docRef = doc(dataBase, 'users', user.uid, 'preferences', 'theme');
+    await setDoc(docRef, { theme }, { merge: true });
+  } catch (error) {
+    console.error('Error updating theme:', error);
+    throw error;
+  }
+};

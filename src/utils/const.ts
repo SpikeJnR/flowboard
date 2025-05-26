@@ -4,6 +4,7 @@ export const AppRoute = {
   LOGIN: '/login',
   LOGOUT: '/logout',
   BOARDS: '/boards',
+  SETTINGS: '/settings',
 }
 
 export const NameSpace = {
@@ -42,4 +43,9 @@ export const Priority = {
   MEDIUM: 'Medium',
   NORMAL: 'Normal',
   NO_PRIORITY: 'No priority',
+}
+
+export const Theme = {
+  LIGHT: 'light',
+  DARK: 'dark',
 }
