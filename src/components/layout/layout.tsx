@@ -1,27 +1,17 @@
 import {Link, Outlet, useLocation, useNavigate} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../utils/const.ts';
-import {useAppDispatch, useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks';
 import {getAuthStatus, getUserName, getUserPhoto} from '../../store/user-slice/user-selectors.ts';
-import {auth} from '../../firebase.ts';
-import {checkAuthAction} from '../../store/user-slice/user-api-actions.ts';
+import {useState} from "react";
+import UserMenu from "../user-menu";
 
 const Layout = () => {
     const { pathname } = useLocation();
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const authStatus = useAppSelector(getAuthStatus);
     const photoUrl = useAppSelector(getUserPhoto);
     const userName = useAppSelector(getUserName);
-
-    const logout = async () => {
-      try {
-        await auth.signOut();
-        dispatch(checkAuthAction());
-        navigate(AppRoute.ROOT);
-      } catch (error) {
-        console.error('Ошибка выхода:', error);
-      }
-    }
+    const [userMenuOpen, setUserMenuOpen] = useState(false);
 
     if (pathname === '/login') {
       return <Outlet />;
@@ -38,15 +28,19 @@ const Layout = () => {
             {
               authStatus === AuthorizationStatus.AUTH
                 ? (
-                  <>
+                  <div className='user-menu__wrapper'>
                     <div className='layout__nav-user-menu'>
                       <img className='user__name-photo' src={photoUrl}></img>
                       <p className='layout__name'>{userName}</p>
-                      <button className='user__button' onClick={logout}>
+                      <button className='user__button' onClick={() => setUserMenuOpen(!userMenuOpen)}>
                         <img className='user__button-arrow' src='../public/images/arrow-down.svg'/>
                       </button>
                     </div>
-                  </>
+
+                    {
+                      userMenuOpen && <UserMenu setUserMenuOpen={setUserMenuOpen}/>
+                    }
+                  </div>
                 ) : <button onClick={() => navigate(AppRoute.LOGIN)} className='layout__button button-large button'>LOGIN</button>
             }
           </div>
