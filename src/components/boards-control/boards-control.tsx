@@ -1,23 +1,20 @@
 import type {BoardType} from '../../types/board-type.ts';
 import {addBoardSettings} from '../../services/taskService.ts';
-import {type Dispatch, type SetStateAction} from 'react';
+import {useTaskContext} from '../../contexts/task-context.tsx';
 
-type BoardsControlProps = {
-  showCompleted: boolean;
-  setShowCompleted: Dispatch<SetStateAction<boolean>>;
-}
+const BoardsControl = () => {
 
-const BoardsControl = ({showCompleted, setShowCompleted}: BoardsControlProps) => {
+  const {showCompleted, setShowCompleted} = useTaskContext();
 
   const handleBoardSettings = async (boardData: BoardType) => {
     try {
-      setShowCompleted(prev => !prev);
+      setShowCompleted(!showCompleted);
       await addBoardSettings({
         ...boardData,
         completedStatus: !showCompleted
       });
     } catch (error) {
-      setShowCompleted(prev => !prev);
+      setShowCompleted(!showCompleted);
       console.error('Failed to update board settings:', error);
     }
   }

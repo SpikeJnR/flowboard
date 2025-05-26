@@ -4,7 +4,7 @@ import type {TaskType} from '../types/task-type.ts';
 import type {BoardType} from '../types/board-type.ts';
 import { Timestamp } from 'firebase/firestore';
 
-export const addTask = async (itemData:  Omit<TaskType, 'id' | 'completedStatus'>) => {
+export const addTaskRequest = async (itemData:  Omit<TaskType, 'id' | 'completedStatus'>) => {
   const user = auth.currentUser;
   if (!user) throw new Error('User not authenticated');
 
@@ -22,7 +22,7 @@ export const addTask = async (itemData:  Omit<TaskType, 'id' | 'completedStatus'
   }
 }
 
-export const deleteTask = async (itemId: string) => {
+export const deleteTaskRequest = async (itemId: string) => {
   const user = auth.currentUser;
   if (!user) return () => {};
 
@@ -55,7 +55,7 @@ export const subscribeToTasks = (callback: (tasks: TaskType[]) => void ) => {
   });
 }
 
-export const updateTask = async ( task: TaskType) => {
+export const updateTaskRequest = async ( task: TaskType) => {
   const user = auth.currentUser;
   if (!user) return () => {};
 
