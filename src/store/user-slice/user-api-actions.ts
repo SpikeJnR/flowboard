@@ -1,6 +1,6 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import type {User} from 'firebase/auth';
-import { auth } from '../../firebase';
+import {type User} from 'firebase/auth';
+import {auth} from '../../firebase';
 
 export const checkAuthAction = createAsyncThunk<User | null>(
   'user/checkAuthAction',

@@ -8,7 +8,7 @@
 @import 'styles/board-screen/board-screen.css';
 @import 'styles/components/task.css';
 @import 'styles/loading-screen/loading-screen.css';
-
+@import 'styles/user-screen/user-screen.css';
 
 @font-face {
   font-family: 'Roboto';
@@ -30,14 +30,4 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
-}
-
-@media (prefers-color-scheme: dark) {
-  --color-bg-primary: #1A1A1A;     /* Темный фон страницы и карточек */
-  --color-bg-secondary: #262626;    /* Темные боковые панели */
-  --color-accent-purple: #FF453A;      /* Акцентный красный для темного режима */
-  --color-accent-red-dark: #D70015; /* Темно-красный для активных элементов */
-  --color-text-primary: #e81515;    /* Белый основной текст */
-  --color-text-secondary: #A6A6A6;  /* Серый второстепенный текст */
-  --color-border: #404040;          /* Темные границы */
 }

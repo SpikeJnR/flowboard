@@ -5,7 +5,7 @@ import {AppRoute, AuthorizationStatus} from '../../utils/const.ts';
 import LoadingScreen from '../../pages/loading-screen';
 
 type PrivateRouteProps = {
-  children: JSX.Element;
+  children: React.ReactNode;
 }
 
 const PrivateRoute = ({ children }: PrivateRouteProps) => {
