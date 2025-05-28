@@ -16,7 +16,6 @@ const UserMenu = ({setUserMenuOpen}: UserMenuProps) => {
   const navigate = useNavigate();
   const {theme, toggleTheme} = useTheme()
 
-
   const logout = async () => {
     try {
       await auth.signOut();

@@ -69,7 +69,6 @@ export const updateTaskRequest = async ( task: TaskType) => {
   }
 }
 
-
 export const addBoardSettings = async (boardData: BoardType) => {
   const user = auth.currentUser;
   if (!user) return () => {};
@@ -93,7 +92,6 @@ export const subscribeToBoardSettings = (callback: (boards: BoardType[]) => void
       id: doc.id,
       ...doc.data()
     })) as BoardType[];
-
     callback(data);
   })
 }
@@ -119,3 +117,4 @@ export const setUserTheme = async (theme: string | null) => {
     throw error;
   }
 };
+

@@ -1,0 +1,12 @@
+.user-screen {
+  width: 100%;
+  max-width: 1400px;
+  height: 91vh;
+  background-color: var(--color-bg-secondary);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+

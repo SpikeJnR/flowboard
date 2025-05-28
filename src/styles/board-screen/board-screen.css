@@ -141,12 +141,7 @@
 }
 
 .completed__button-active:after {
-  content: "";
-  position: absolute;
-  top: 13%;
   left: 55%;
-  width: 15px;
-  height: 15px;
   animation: completedIn 0.8s;
   background-color: var(--color-bg-secondary);
   border-radius: 50%;
