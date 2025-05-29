@@ -30,12 +30,14 @@ const LoginScreen = () => {
     }
   }
 
-  const login = () => {
+  const loginWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider)
+    await signInWithPopup(auth, provider)
       .then(() => {
         dispatch(checkAuthAction());
         navigate(AppRoute.BOARDS);
+        const user = auth.currentUser;
+        user && sendEmailVerification(user);
       })
       .catch((error) => {
         console.error('Ошибка входа через Google:', error.message);
@@ -98,7 +100,7 @@ const LoginScreen = () => {
           </div>
 
           <p className='login__divider'>Or continue</p>
-          <button onClick={login} className='button  login__btn-google'>
+          <button onClick={loginWithGoogle} className='button  login__btn-google'>
               <img className='google_icon' src='./public/images/google-icon.svg' width='24px' height='24px'/>
               Log in with Google
           </button>
