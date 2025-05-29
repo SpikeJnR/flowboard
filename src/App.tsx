@@ -15,7 +15,6 @@ import {auth} from "./firebase.ts";
 import UserScreen from "./pages/user-screen";
 
 function App() {
-
   const dispatch = useAppDispatch();
   const { initTheme } = useTheme();
 
