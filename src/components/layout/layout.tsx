@@ -1,6 +1,6 @@
 import {Link, Outlet, useLocation, useNavigate} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../utils/const.ts';
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/hooks-selectors.ts';
 import {getAuthStatus, getUserName, getUserPhoto} from '../../store/user-slice/user-selectors.ts';
 import {useState} from "react";
 import UserMenu from "../user-menu";

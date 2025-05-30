@@ -1,9 +1,9 @@
-import './App.css'
+import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Layout from './components/layout';
 import {Fragment, useEffect} from 'react';
 import {AppRoute, Theme} from './utils/const.ts';
-import {useAppDispatch} from './hooks';
+import {useAppDispatch} from './hooks/hooks-selectors.ts';
 import {checkAuthAction} from './store/user-slice/user-api-actions.ts';
 import LoginScreen from './pages/login-screen';
 import MainScreen from './pages/main-screen';

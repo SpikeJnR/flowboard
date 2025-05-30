@@ -1,4 +1,4 @@
-import {useAppSelector} from '../../hooks';
+import {useAppSelector} from '../../hooks/hooks-selectors.ts';
 import {getAuthStatus} from '../../store/user-slice/user-selectors.ts';
 import {Navigate, useLocation} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../utils/const.ts';

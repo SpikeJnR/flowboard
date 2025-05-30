@@ -1,4 +1,4 @@
-import {useAppSelector} from "../../hooks";
+import {useAppSelector} from "../../hooks/hooks-selectors.ts";
 import {getUserName, getUserPhoto} from "../../store/user-slice/user-selectors.ts";
 import {auth} from "../../firebase.ts";
 import {handleAddPassword, handleChangeEmail} from "../../store/user-slice/user-api-actions.ts";

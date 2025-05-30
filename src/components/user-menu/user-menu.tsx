@@ -1,7 +1,7 @@
 import {auth} from '../../firebase.ts';
 import {checkAuthAction} from '../../store/user-slice/user-api-actions.ts';
 import {AppRoute, Theme} from '../../utils/const.ts';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch} from '../../hooks/hooks-selectors.ts';
 import {Link, useNavigate} from 'react-router-dom';
 import {type Dispatch} from 'react';
 import useTheme from '../../hooks/use-theme.tsx';

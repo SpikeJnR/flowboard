@@ -1,12 +1,11 @@
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, sendEmailVerification } from 'firebase/auth';
 import { auth } from '../../firebase.ts';
-import {useAppDispatch} from '../../hooks';
+import {useAppDispatch} from '../../hooks/hooks-selectors.ts';
 import {checkAuthAction} from '../../store/user-slice/user-api-actions.ts';
 import {Link, useNavigate} from 'react-router-dom';
 import { AppRoute} from '../../utils/const.ts';
 import Gallery from '../../components/gallery';
 import {useState} from 'react';
-import { sendEmailVerification } from 'firebase/auth';
 import LoginForm from "../../components/login-form";
 
 const LoginScreen = () => {
@@ -14,21 +13,20 @@ const LoginScreen = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-
-
   const loginWithGoogle = async () => {
-    const provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider)
-      .then(() => {
-        dispatch(checkAuthAction());
-        navigate(AppRoute.BOARDS);
-        const user = auth.currentUser;
-        user && sendEmailVerification(user);
-      })
-      .catch((error) => {
-        console.error('Ошибка входа через Google:', error.message);
-      });
-  }
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      const user = auth.currentUser;
+      if (user && !user.emailVerified) {
+        await sendEmailVerification(user);
+      }
+      dispatch(checkAuthAction());
+      navigate(AppRoute.BOARDS);
+    } catch (error) {
+      console.error('Ошибка входа через Google:', (error as Error).message);
+    }
+  };
 
   return (
     <section className='login login__screen'>
