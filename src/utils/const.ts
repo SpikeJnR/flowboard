@@ -1,27 +1,26 @@
-
 export const AppRoute = {
   ROOT: '/',
   LOGIN: '/login',
   LOGOUT: '/logout',
   BOARDS: '/boards',
-  SETTINGS: '/settings',
-}
+  SETTINGS: '/settings'
+};
 
 export const NameSpace = {
-  USER: 'user',
-}
+  USER: 'user'
+};
 
 export const AuthorizationStatus = {
   AUTH: 'auth',
   NO_AUTH: 'no_auth',
-  UNKNOWN: 'unknown',
-}
+  UNKNOWN: 'unknown'
+};
 
 export const BoardCategory = {
   TODO: 'Todo',
   IN_PROGRESS: 'In Progress',
-  DONE: 'Done',
-}
+  DONE: 'Done'
+};
 
 export const Days: Record<number, string> = {
   0: 'January',
@@ -35,17 +34,17 @@ export const Days: Record<number, string> = {
   8: 'September',
   9: 'October',
   10: 'November',
-  11: 'December',
-}
+  11: 'December'
+};
 
 export const Priority = {
   HIGH: 'High',
   MEDIUM: 'Medium',
   NORMAL: 'Normal',
-  NO_PRIORITY: 'No priority',
-}
+  NO_PRIORITY: 'No priority'
+};
 
 export const Theme = {
   LIGHT: 'light',
-  DARK: 'dark',
-}
+  DARK: 'dark'
+};

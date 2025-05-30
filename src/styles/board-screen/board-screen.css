@@ -76,10 +76,9 @@
   margin-bottom: 10px;
 }
 
-
 .board__button:after,
 .board__button:before {
-  content: "";
+  content: '';
   display: block;
   position: absolute;
   top: 50%;
@@ -128,7 +127,7 @@
 }
 
 .completed__button:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 13%;
   left: 10%;

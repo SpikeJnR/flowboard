@@ -1,18 +1,17 @@
-import type {Dispatch, SetStateAction} from 'react';
-import type {TaskType} from '../../types/task-type.ts';
-import {Priority} from '../../utils/const.ts';
+import type { Dispatch, SetStateAction } from 'react';
+import type { TaskType } from '../../types/task-type.ts';
+import { Priority } from '../../utils/const.ts';
 
 type PrioritySelectionProps = {
   setEditedTask: Dispatch<SetStateAction<TaskType>>;
   setShowPriorityPopover: Dispatch<SetStateAction<boolean>>;
-}
+};
 
 const PrioritySelection = ({ setEditedTask, setShowPriorityPopover }: PrioritySelectionProps) => {
-
   const handlePriorityClick = (evt: number) => {
-    setEditedTask((prev:  TaskType )=> ({
+    setEditedTask((prev: TaskType) => ({
       ...prev,
-      priority: evt,
+      priority: evt
     }));
     setShowPriorityPopover(false);
   };
@@ -32,13 +31,11 @@ const PrioritySelection = ({ setEditedTask, setShowPriorityPopover }: PrioritySe
             src={`/images/flag${index + 1}.svg`}
             alt={`${label} priority icon`}
           />
-          <p className='priority__title'>
-            {label} priority
-          </p>
+          <p className='priority__title'>{label} priority</p>
         </div>
       ))}
     </div>
   );
-}
+};
 
 export default PrioritySelection;

@@ -1,7 +1,7 @@
-import {createSlice, type PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { AuthorizationStatus, NameSpace } from '../../utils/const.ts';
-import type {UserState} from './user-types.ts';
-import {checkAuthAction} from './user-api-actions.ts';
+import type { UserState } from './user-types.ts';
+import { checkAuthAction } from './user-api-actions.ts';
 
 const initialState: UserState = {
   userPhoto: undefined,
@@ -9,8 +9,8 @@ const initialState: UserState = {
   userID: undefined,
   userEmail: undefined,
   authStatus: undefined,
-  authorizationStatus: AuthorizationStatus.UNKNOWN,
-}
+  authorizationStatus: AuthorizationStatus.UNKNOWN
+};
 
 const userSLice = createSlice({
   name: NameSpace.USER,
@@ -29,10 +29,10 @@ const userSLice = createSlice({
       state.userPhoto = action.payload;
     }
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addCase(checkAuthAction.fulfilled, (state, action) => {
-        if(action.payload) {
+        if (action.payload) {
           state.authorizationStatus = AuthorizationStatus.AUTH;
           state.userEmail = action.payload.email || undefined;
           state.userID = action.payload.uid;
@@ -46,11 +46,11 @@ const userSLice = createSlice({
           state.userPhoto = undefined;
         }
       })
-      .addCase(checkAuthAction.rejected, (state) => {
+      .addCase(checkAuthAction.rejected, state => {
         state.authorizationStatus = AuthorizationStatus.NO_AUTH;
-      })
+      });
   }
-})
+});
 
-export const {setUserEmail, setUserID, setUserName, setUserPhoto} = userSLice.actions;
+export const { setUserEmail, setUserID, setUserName, setUserPhoto } = userSLice.actions;
 export default userSLice.reducer;

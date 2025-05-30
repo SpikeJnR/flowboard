@@ -1,35 +1,37 @@
 :root {
-  &[data-theme="light"] {
-    --color-bg-primary: #F5F5F5;
-    --color-bg-secondary: #FFFFFF;
-    --color-text-primary: #2D3436;
-    --color-text-secondary: #636E72;
-    --color-accent-purple: #7677F4;
-    --color-accent-purple-light: #9B9BFF;
-    --color-accent-purple-darker: #7474F6;
-    --color-blue: #3938E5;
-    --color-blue-darker: #1A1AC7;
-    --color-blue-dark-purple: #1F0059;
-    --gradient-purple: linear-gradient(#9B9BFF, #7474F6);
+  &[data-theme='light'] {
+    --color-bg-primary: #f5f5f5;
+    --color-bg-secondary: #ffffff;
+    --color-text-primary: #2d3436;
+    --color-text-secondary: #636e72;
+    --color-accent-purple: #7677f4;
+    --color-accent-purple-light: #9b9bff;
+    --color-accent-purple-darker: #7474f6;
+    --color-blue: #3938e5;
+    --color-blue-darker: #1a1ac7;
+    --color-blue-dark-purple: #1f0059;
+    --gradient-purple: linear-gradient(#9b9bff, #7474f6);
   }
 
-  &[data-theme="dark"] {
-    --color-bg-primary: #1A1A1A;
-    --color-bg-secondary: #2D2D2D;
-    --color-text-primary: #FFFFFF;
-    --color-text-secondary: #CCCCCC;
-    --color-accent-purple: #8A89FF;
-    --color-accent-purple-light: #6B6AFF;
-    --color-accent-purple-darker: #5A59E0;
-    --color-blue: #5251FF;
-    --color-blue-darker: #3D3CDF;
-    --color-blue-dark-purple: #3A1F8C;
-    --gradient-purple: linear-gradient(#6B6AFF, #5A59E0);
+  &[data-theme='dark'] {
+    --color-bg-primary: #1a1a1a;
+    --color-bg-secondary: #2d2d2d;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #cccccc;
+    --color-accent-purple: #8a89ff;
+    --color-accent-purple-light: #6b6aff;
+    --color-accent-purple-darker: #5a59e0;
+    --color-blue: #5251ff;
+    --color-blue-darker: #3d3cdf;
+    --color-blue-dark-purple: #3a1f8c;
+    --gradient-purple: linear-gradient(#6b6aff, #5a59e0);
   }
 
   --font-main: 'Roboto', sans-serif;
 
   * {
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 }
