@@ -1,13 +1,13 @@
-import {createContext, type ReactNode, useContext, useEffect, useState} from 'react';
-import type {TaskType} from '../types/task-type.ts';
+import { createContext, type ReactNode, useContext, useEffect, useState } from 'react';
+import type { TaskType } from '../types/task-type.ts';
 import {
   addTaskRequest,
   deleteTaskRequest,
   updateTaskRequest,
   subscribeToBoardSettings,
-  subscribeToTasks,
+  subscribeToTasks
 } from '../services/taskService.ts';
-import type {BoardType} from '../types/board-type.ts';
+import type { BoardType } from '../types/board-type.ts';
 
 type TaskContextType = {
   tasks: TaskType[];
@@ -20,10 +20,9 @@ type TaskContextType = {
   setIsAddTaskOpen: (isAddTaskOpen: boolean) => void;
   isEditTaskOpen: boolean;
   setIsEditTaskOpen: (isEditTaskOpen: boolean) => void;
-}
+};
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
-
 
 const TaskProvider = ({ children }: { children: ReactNode }) => {
   const [tasks, setTasks] = useState<TaskType[]>([]);
@@ -50,7 +49,7 @@ const TaskProvider = ({ children }: { children: ReactNode }) => {
 
   const addTask = async (newTask: Omit<TaskType, 'id' | 'completedStatus'>) => {
     await addTaskRequest(newTask);
-  }
+  };
 
   const deleteTask = async (id: string) => {
     try {
@@ -59,7 +58,7 @@ const TaskProvider = ({ children }: { children: ReactNode }) => {
       console.error('Failed to delete task-item-from-edit:', error);
       throw error;
     }
-  }
+  };
 
   const updateTask = async (task: TaskType) => {
     try {
@@ -68,7 +67,7 @@ const TaskProvider = ({ children }: { children: ReactNode }) => {
     } catch (error) {
       console.error('Failed to update task-item-from-edit:', error);
     }
-  }
+  };
 
   return (
     <TaskContext.Provider
@@ -88,14 +87,14 @@ const TaskProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </TaskContext.Provider>
   );
-}
+};
 
 export default TaskProvider;
 
 export const useTaskContext = () => {
   const context = useContext(TaskContext);
-  if(!context){
+  if (!context) {
     throw new Error('useTaskContext must be used within a TaskProvider');
   }
   return context;
-}
+};

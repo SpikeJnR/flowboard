@@ -1,7 +1,7 @@
-import {Theme} from "../utils/const.ts";
-import {useState} from "react";
-import {getUserTheme, setUserTheme} from "../services/taskService.ts";
-import {auth} from "../firebase.ts";
+import { Theme } from '../utils/const.ts';
+import { useState } from 'react';
+import { getUserTheme, setUserTheme } from '../services/taskService.ts';
+import { auth } from '../firebase.ts';
 
 const useTheme = () => {
   const [theme, setThemeState] = useState<string>(() => {
@@ -15,7 +15,7 @@ const useTheme = () => {
     document.documentElement.setAttribute('data-theme', finalTheme);
     setThemeState(finalTheme);
 
-    if(isUserAuthenticated) {
+    if (isUserAuthenticated) {
       localStorage.setItem('theme', finalTheme);
       setUserTheme(finalTheme).catch(console.error);
     }
@@ -36,7 +36,7 @@ const useTheme = () => {
 
   const toggleTheme = async () => {
     const isAuthenticated = !!auth.currentUser;
-    if(!isAuthenticated) return;
+    if (!isAuthenticated) return;
 
     const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
     applyTheme(newTheme, isAuthenticated);

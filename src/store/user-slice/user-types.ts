@@ -5,5 +5,4 @@ export type UserState = {
   userEmail: string | undefined;
   authStatus: string | undefined;
   authorizationStatus: string;
-}
-
+};

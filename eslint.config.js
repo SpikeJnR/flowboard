@@ -1,47 +1,33 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import tseslint from 'typescript-eslint'
+import js from '@eslint/js';
+import react from 'eslint-plugin-react';
+import tseslint from 'typescript-eslint';
+import globals from 'globals';
+import prettier from 'eslint-config-prettier';
 
-export default tseslint.config(
-  { ignores: ['dist'] },
+export default [
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
     plugins: {
-      'react-hooks': reactHooks,
-      'react-refresh': reactRefresh,
+      react
     },
-      rules: {
-          // Форматирование
-          'indent': ['error', 2, { SwitchCase: 1 }],
-          'linebreak-style': ['error', 'unix'],
-          'quotes': ['error', 'single'],
-          'semi': ['error', 'always'],
-          'space-infix-ops': 'error',
-          'space-before-blocks': 'error',
-          'keyword-spacing': ['error', { before: true }],
-          'object-curly-spacing': ['error', 'always'],
-          'array-bracket-spacing': ['error', 'never'],
-          'comma-spacing': ['error', { before: false, after: true }],
-          'arrow-spacing': 'error',
-          'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
-          'padded-blocks': ['error', 'never'],
-          'lines-between-class-members': ['error', 'always'],
-          'padding-line-between-statements': [
-              'error',
-              { blankLine: 'always', prev: '*', next: 'return' },
-              { blankLine: 'always', prev: 'block-like', next: '*' },
-          ],
-
-          // React специфика
-          'react/jsx-indent': ['error', 2],
-          'react/jsx-indent-props': ['error', 2],
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module'
       },
+      globals: {
+        ...globals.browser,
+        ...globals.node
+      }
+    },
+    rules: {
+      semi: ['error', 'always'],
+      'react/jsx-uses-react': 'off',
+      'react/react-in-jsx-scope': 'off',
+      'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }]
+    }
   },
-)
+  prettier
+];
