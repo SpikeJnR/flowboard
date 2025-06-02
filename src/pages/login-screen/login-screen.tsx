@@ -58,16 +58,13 @@ const LoginScreen = () => {
 
           <p className='login__signup-text'>
             {isLogin ? "Don't have an account? " : 'Do you already have an account? '}
-
             <button className='login__signup-button' onClick={() => setIsLogin(!isLogin)}>
               {isLogin ? 'Sign Up' : 'Login'}
             </button>
           </p>
         </div>
 
-        <div className='login__right-section'>
-          <Gallery />
-        </div>
+        <Gallery />
       </div>
     </section>
   );

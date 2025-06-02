@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .login {
   position: relative;
   display: flex;
@@ -8,6 +12,7 @@
   min-height: 100vh;
   background-color: var(--color-accent-purple-light);
   overflow: auto;
+  padding: 20px;
 }
 
 .login:before,
@@ -18,6 +23,7 @@
   height: 500px;
   border-radius: 50%;
   background: linear-gradient(var(--color-accent-purple), var(--color-accent-purple-light));
+  z-index: 0;
 }
 
 .login:before {
@@ -33,11 +39,12 @@
 }
 
 .login__logo-container {
-  display: inline-grid;
+  display: grid;
   grid-template-columns: 1fr 1.3fr;
   gap: 20px;
-  width: 1000px;
-  height: 800px;
+  min-width: 400px;
+  max-width: 1000px;
+  width: 100%;
   background-color: var(--color-bg-secondary);
   border-radius: 10px;
   padding: 20px;
@@ -52,7 +59,10 @@
 .login__right-section {
   border-radius: 10px;
   background-color: var(--color-accent-purple-light);
+  width: 100%;
+  height: 100%;
 }
+
 .login__logo {
   display: flex;
   align-items: baseline;
@@ -79,8 +89,16 @@
   position: relative;
 }
 
+.email__input--wrapper,
+.email__input--wrapper,
+.nickname__input--wrapper,
+.password__input--wrapper{
+  position: relative;
+}
+
 .email__input,
 .password__input,
+.nickname__input,
 .login__btn-google {
   width: 100%;
   height: 50px;
@@ -90,32 +108,36 @@
   border: 2px solid var(--color-text-secondary);
 }
 
-.email__input {
-  margin-bottom: 40px;
-}
-
+.email__input,
 .password__input {
   margin-bottom: 40px;
 }
 
 .email__label,
-.password__label {
-  background-color: var(--color-bg-secondary);
-}
-
-.email__label,
-.password__label {
+.password__label,
+.nickname__label {
   position: absolute;
+  background-color: var(--color-bg-secondary);
+  padding: 0 5px;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+  transition: 0.2s ease all;
 }
 
 .email__label {
-  top: -7%;
-  left: 3%;
+  top: -10px;
+  left: 10px;
 }
 
 .password__label {
-  top: 29%;
-  left: 3%;
+  top: -10px;
+  left: 10px;
+}
+
+.nickname__label {
+  top: -10px;
+  left: 10px;
 }
 
 input {
@@ -123,20 +145,20 @@ input {
   border: 1px solid #ccc;
   border-radius: 4px;
   transition: all 0.2s ease;
+  font-size: 16px;
 }
 
-/* Убираем стили автозаполнения в Chrome и других WebKit-браузерах */
+/* Autofill стили */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px white inset !important; /* Цвет фона */
-  -webkit-text-fill-color: black !important; /* Цвет текста */
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: black !important;
   caret-color: black !important;
-  transition: background-color 5000s ease-in-out 0s; /* Хак для отключения цвета */
+  transition: background-color 5000s ease-in-out 0s;
 }
 
-/* Для Firefox */
 input:-moz-autofill {
   background-color: #fff !important;
 }
@@ -167,7 +189,8 @@ input:focus + label {
   background-color: var(--color-text-primary);
 }
 
-.google_icon {
+.google_icon,
+.task-list-icon {
   margin-right: 10px;
 }
 
@@ -191,15 +214,7 @@ input:focus + label {
 }
 
 .login__signup-button:active {
-  opacity: var(--color-blue-darker);
-}
-
-.login__right-section {
-  height: 100%;
-  width: 100%;
-}
-.task-list-icon {
-  margin-right: 10px;
+  opacity: 0.9;
 }
 
 .login-man {
@@ -208,15 +223,63 @@ input:focus + label {
 
 .password__toggle {
   border: none;
-  width: 60px;
+  width: 40px;
   height: 40px;
   background-color: transparent;
   position: absolute;
-  top: 38%;
-  left: 83%;
+  right: 10px;
+  top: 5%;
   cursor: pointer;
 }
 
 .password__icon {
   margin: 0 auto;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .login__logo-container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .login__left-section {
+    padding: 20px;
+  }
+
+  .login__right-section {
+    display: none;
+  }
+
+  .login__title {
+    font-size: 32px;
+  }
+
+  .login__logo {
+    font-size: 28px;
+  }
+
+  .login__signup-text,
+  .login__signup-button {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .login__title {
+    font-size: 26px;
+  }
+
+  .login__logo {
+    font-size: 24px;
+  }
+
+  .login__signup-text,
+  .login__signup-button {
+    font-size: 16px;
+  }
+
+  .login__right-section {
+    display: none;
+  }
 }

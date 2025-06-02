@@ -24,29 +24,31 @@ const Gallery = () => {
   }, []);
 
   return (
-    <div className='carousel'>
-      <div className='carousel-slide'>
-        <img
-          className='carousel__img'
-          key={currentSlide}
-          src={slides[currentSlide]}
-          alt={`Slide ${currentSlide + 1}`}
-        />
-      </div>
+    <div className='login__right-section'>
+      <div className='carousel'>
+        <div className='carousel-slide'>
+          <img
+            className='carousel__img'
+            key={currentSlide}
+            src={slides[currentSlide]}
+            alt={`Slide ${currentSlide + 1}`}
+          />
+        </div>
 
-      <p key={currentSlide} className='carousel__title'>
-        {titles[currentSlide]}
-      </p>
+        <p key={currentSlide} className='carousel__title'>
+          {titles[currentSlide]}
+        </p>
 
-      <div className='carousel-nav'>
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            className={`carousel__nav-button ${currentSlide === index ? 'active' : ''}`}
-            onClick={() => setCurrentSlide(index)}
-            aria-label={`Go to Slide ${index + 1}`}
-          ></button>
-        ))}
+        <div className='carousel-nav'>
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              className={`carousel__nav-button ${currentSlide === index ? 'active' : ''}`}
+              onClick={() => setCurrentSlide(index)}
+              aria-label={`Go to Slide ${index + 1}`}
+            ></button>
+          ))}
+        </div>
       </div>
     </div>
   );
