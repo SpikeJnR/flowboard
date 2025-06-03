@@ -28,7 +28,7 @@ const Layout = () => {
           {authStatus === AuthorizationStatus.AUTH ? (
             <div className='user-menu__wrapper'>
               <div className='layout__nav-user-menu'>
-                <img className='user__name-photo' src={photoUrl}></img>
+                <img className='user__name-photo' src={photoUrl} width='50px' height='50px'></img>
                 <p className='layout__name'>{userName}</p>
                 <button className='user__button' onClick={() => setUserMenuOpen(!userMenuOpen)}>
                   <img className='user__button-arrow' src='../public/images/arrow-down.svg' />

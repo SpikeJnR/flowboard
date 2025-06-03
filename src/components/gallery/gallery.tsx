@@ -4,9 +4,9 @@ const Gallery = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
-    './public/images/login-slide1.svg',
-    './public/images/login-slide2.svg',
-    './public/images/login-slide3.svg'
+    '/images/login-slide1.svg',
+    '/images/login-slide2.svg',
+    '/images/login-slide3.svg'
   ];
 
   const titles = [

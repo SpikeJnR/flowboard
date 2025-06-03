@@ -35,7 +35,7 @@ const LoginScreen = () => {
           <Link to='/' className='login__logo logo'>
             <img
               className='task-list-icon'
-              src='./public/images/task-list-icon.svg'
+              src='/images/task-list-icon.svg'
               width='50px'
               height='50px'
             />
@@ -47,12 +47,7 @@ const LoginScreen = () => {
 
           <p className='login__divider'>Or continue</p>
           <button onClick={loginWithGoogle} className='button  login__btn-google'>
-            <img
-              className='google_icon'
-              src='./public/images/google-icon.svg'
-              width='24px'
-              height='24px'
-            />
+            <img className='google_icon' src='/images/google-icon.svg' width='24px' height='24px' />
             Log in with Google
           </button>
 

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth.ts';
 import NicknameInputField from '../nickname-input-field';
+import ImageUploader from '../image-uploader';
 
 type LoginFormProps = {
   isLogin: boolean;
@@ -13,12 +14,18 @@ const LoginForm = ({ isLogin }: LoginFormProps) => {
   const [password, setPassword] = useState('');
   const [nickname, setNickname] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [photo, setPhoto] = useState<string>('');
+  const [isLoadingPhoto, setIsLoadingPhoto] = useState(false);
 
   const handleSubmit = async (evt: React.FormEvent) => {
     evt.preventDefault();
 
     try {
-      isLogin ? await login(email, password) : await register(email, password, nickname);
+      if (isLogin) {
+        await login(email, password);
+      } else {
+        await register(email, password, nickname, photo);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -72,8 +79,8 @@ const LoginForm = ({ isLogin }: LoginFormProps) => {
               className='password__icon'
               src={
                 showPassword
-                  ? './public/images/password-visibility.svg'
-                  : './public/images/password-visibility-off.svg'
+                  ? '/images/password-visibility.svg'
+                  : '/images/password-visibility-off.svg'
               }
               width='24px'
               height='24px'
@@ -83,8 +90,12 @@ const LoginForm = ({ isLogin }: LoginFormProps) => {
         </div>
 
         {!isLogin && <NicknameInputField setNickname={setNickname} />}
-
-        <button type='submit' className='button blue__button'>
+        {!isLogin && <ImageUploader setPhoto={setPhoto} setIsLoadingPhoto={setIsLoadingPhoto} />}
+        <button
+          type='submit'
+          className={`button blue__button ${isLoadingPhoto ? 'button__login--disabled' : ''}`}
+          disabled={isLoadingPhoto}
+        >
           {isLogin ? 'Sign in' : 'Register'}
         </button>
       </form>
