@@ -38,7 +38,6 @@ export const handleAddPassword = async (password: string) => {
     const credential = EmailAuthProvider.credential(user.email, password);
 
     await linkWithCredential(user, credential);
-    console.log('work');
   } catch (error) {
     console.error(error);
   }

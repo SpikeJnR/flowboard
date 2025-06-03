@@ -20,10 +20,20 @@ const useAuth = () => {
     });
   };
 
-  const register = async (email: string, password: string, nickname: string) => {
+  const changeUserPhoto = async (photo: string) => {
+    if (!photo) {
+      photo = '/images/user-icon.png';
+    }
+    await updateProfile(auth.currentUser, {
+      photoURL: photo
+    });
+  };
+
+  const register = async (email: string, password: string, nickname: string, photo: string) => {
     const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
     await sendEmailVerification(userCredentials.user);
     await changeNickname(nickname);
+    await changeUserPhoto(photo);
     dispatch(checkAuthAction());
     navigate(AppRoute.ROOT);
   };
@@ -31,7 +41,6 @@ const useAuth = () => {
   const login = async (email: string, password: string) => {
     await signInWithEmailAndPassword(auth, email, password);
     dispatch(checkAuthAction());
-
     navigate(AppRoute.BOARDS);
   };
 
