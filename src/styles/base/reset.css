@@ -12,7 +12,9 @@ html {
 }
 
 body {
-  background-color: var(--color-bg-primary);
+  background-color: var(--color-accent-purple-light);
+  background-image: var(--background);
+  background-size: cover;
   color: var(--color-text-primary);
   line-height: 1.6;
   font-family: 'Roboto', sans-serif;

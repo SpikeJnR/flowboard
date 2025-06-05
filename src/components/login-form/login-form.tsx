@@ -57,6 +57,12 @@ const LoginForm = ({ isLogin }: LoginFormProps) => {
         await register(email, password, nickname, photo);
       }
     } catch (error) {
+      if (
+        error instanceof Error &&
+        error.message === 'Firebase: Error (auth/invalid-credential).'
+      ) {
+        setIsPasswordError('Make sure that the email and password are entered correctly.');
+      }
       console.error(error);
     }
   };

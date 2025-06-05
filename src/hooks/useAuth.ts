@@ -15,18 +15,22 @@ const useAuth = () => {
   const navigate = useNavigate();
 
   const changeNickname = async (nickname: string) => {
-    await updateProfile(auth.currentUser, {
-      displayName: nickname
-    });
+    if (auth.currentUser) {
+      await updateProfile(auth.currentUser, {
+        displayName: nickname
+      });
+    }
   };
 
   const changeUserPhoto = async (photo: string) => {
     if (!photo) {
       photo = '/images/user-icon.png';
     }
-    await updateProfile(auth.currentUser, {
-      photoURL: photo
-    });
+    if (auth.currentUser) {
+      await updateProfile(auth.currentUser, {
+        photoURL: photo
+      });
+    }
   };
 
   const register = async (email: string, password: string, nickname: string, photo: string) => {

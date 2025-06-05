@@ -7,7 +7,7 @@ import {
   getUserName,
   getUserPhoto
 } from '../../store/user-slice/user-selectors.ts';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import UserMenu from '../user-menu';
 
 const Layout = () => {
@@ -18,10 +18,32 @@ const Layout = () => {
   const userName = useAppSelector(getUserName);
   const userEmail = useAppSelector(getUserEmail);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-
+  const userMenuRef = useRef<HTMLDivElement>(null);
   if (pathname === '/login') {
     return <Outlet />;
   }
+
+  useEffect(() => {
+    const handleClickOutside = (evt: MouseEvent) => {
+      const target = evt.target as Node;
+      if (userMenuRef.current && !userMenuRef.current.contains(target)) {
+        setUserMenuOpen(false);
+      }
+    };
+
+    const handleKeyDown = (evt: KeyboardEvent) => {
+      if (evt.key === 'Escape') {
+        setUserMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  });
 
   return (
     <div className='layout'>
@@ -33,7 +55,7 @@ const Layout = () => {
         <div className='layout__nav'>
           {authStatus === AuthorizationStatus.AUTH ? (
             <div className='user-menu__wrapper'>
-              <div className='layout__nav-user-menu'>
+              <div className='layout__nav-user-menu ' ref={userMenuRef}>
                 <button className='user__button' onClick={() => setUserMenuOpen(!userMenuOpen)}>
                   <img className='user__button-arrow' src='/images/menu.svg' />
                 </button>
