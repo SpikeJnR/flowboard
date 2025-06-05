@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth.ts';
 import NicknameInputField from '../nickname-input-field';
 import ImageUploader from '../image-uploader';
+import useValidate from '../../hooks/useValidate.tsx';
 
 type LoginFormProps = {
   isLogin: boolean;
@@ -16,6 +17,35 @@ const LoginForm = ({ isLogin }: LoginFormProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [photo, setPhoto] = useState<string>('');
   const [isLoadingPhoto, setIsLoadingPhoto] = useState(false);
+  const [isEmailError, setIsEmailError] = useState<string | null>(null);
+  const [isPasswordError, setIsPasswordError] = useState<string | null>(null);
+  const { validateEmail, validatePassword } = useValidate;
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!email) {
+        setIsEmailError(null);
+        return;
+      }
+      const error = validateEmail(email);
+      setIsEmailError(error);
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [email]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (!password) {
+        setIsPasswordError(null);
+        return;
+      }
+      const error = validatePassword(password);
+      setIsPasswordError(error);
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [password]);
 
   const handleSubmit = async (evt: React.FormEvent) => {
     evt.preventDefault();
@@ -41,31 +71,36 @@ const LoginForm = ({ isLogin }: LoginFormProps) => {
       <form className='login__form-group' onSubmit={handleSubmit}>
         <div className='email__input--wrapper'>
           <input
-            className='email__input input'
+            className={`email__input input ${isEmailError && 'input__error'}`}
             type='email'
             placeholder='Enter the email'
             id='email__input'
             onChange={evt => setEmail(evt.target.value)}
             required
+            value={email}
+            aria-invalid={!!isEmailError}
+            aria-describedby='email-error'
           />
-          <label className='email__label' htmlFor='email__input'>
+          <label className='email__label input__label' htmlFor='email__input'>
             Email
           </label>
+          {isEmailError && <p className='input__error--message'>{isEmailError}</p>}
         </div>
 
         <div className='password__input--wrapper'>
           <input
-            className='password__input input'
+            className={`password__input input ${isPasswordError && 'input__error'}`}
             type={showPassword ? 'text' : 'password'}
             placeholder='Enter the password'
             id='password__input'
             onChange={evt => setPassword(evt.target.value)}
+            value={password}
             required
-            pattern={'^[A-Za-z0-9]{8,30}$'}
-            title='Пароль должен иметь длинну от 8 до 30 символов. И содержать только латинские цифры и букы'
+            aria-invalid={!!isPasswordError}
+            aria-describedby='password-error'
           />
 
-          <label className='password__label' htmlFor='password__input'>
+          <label className='password__label input__label' htmlFor='password__input'>
             Password
           </label>
 
@@ -85,8 +120,10 @@ const LoginForm = ({ isLogin }: LoginFormProps) => {
               width='24px'
               height='24px'
               id='password__icon'
+              alt={showPassword ? 'Скрыть пароль' : 'Показать пароль'}
             />
           </button>
+          {isPasswordError && <p className='input__error--message'>{isPasswordError}</p>}
         </div>
 
         {!isLogin && <NicknameInputField setNickname={setNickname} />}
@@ -94,7 +131,7 @@ const LoginForm = ({ isLogin }: LoginFormProps) => {
         <button
           type='submit'
           className={`button blue__button ${isLoadingPhoto ? 'button__login--disabled' : ''}`}
-          disabled={isLoadingPhoto}
+          disabled={isLoadingPhoto || !!isEmailError}
         >
           {isLogin ? 'Sign in' : 'Register'}
         </button>

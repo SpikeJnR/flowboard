@@ -14,7 +14,7 @@ const NicknameInputField = ({ setNickname }: NicknameInputFieldProps) => {
         onChange={evt => setNickname(evt.target.value)}
         required
       />
-      <label className='nickname__label' htmlFor='nickname__input'>
+      <label className='nickname__label input__label' htmlFor='nickname__input'>
         Nickname
       </label>
     </div>

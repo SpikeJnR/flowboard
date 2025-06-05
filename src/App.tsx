@@ -10,7 +10,7 @@ import MainScreen from './pages/main-screen';
 import BoardsScreen from './pages/boards-screen';
 import PrivateRoute from './components/private-route';
 import TaskProvider from './contexts/task-context.tsx';
-import useTheme from './hooks/use-theme.tsx';
+import useTheme from './hooks/useTheme.tsx';
 import { auth } from './firebase.ts';
 import UserScreen from './pages/user-screen';
 

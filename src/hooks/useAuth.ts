@@ -35,7 +35,7 @@ const useAuth = () => {
     await changeNickname(nickname);
     await changeUserPhoto(photo);
     dispatch(checkAuthAction());
-    navigate(AppRoute.ROOT);
+    navigate(AppRoute.BOARDS);
   };
 
   const login = async (email: string, password: string) => {
