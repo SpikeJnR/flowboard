@@ -8,7 +8,7 @@ type BoardHeaderProps = {
 
 /* Returns board header */
 const BoardHeader = ({ board, setSelectedBoardType }: BoardHeaderProps) => {
-  const { setIsAddTaskOpen } = useTaskContext();
+  const { isAddTaskOpen, setIsAddTaskOpen } = useTaskContext();
 
   return (
     <div className='board__header'>
@@ -17,7 +17,7 @@ const BoardHeader = ({ board, setSelectedBoardType }: BoardHeaderProps) => {
         className='board__button'
         name={board}
         onClick={evt => {
-          setIsAddTaskOpen(true);
+          setIsAddTaskOpen(!isAddTaskOpen);
           setSelectedBoardType(evt.currentTarget.getAttribute('name'));
         }}
       ></button>

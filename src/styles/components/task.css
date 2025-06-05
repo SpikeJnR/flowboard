@@ -78,13 +78,51 @@
 
 .task--form {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   border-radius: 15px;
-  border: 2px solid var(--color-accent-purple-darker);
+  border: 2px solid var(--color-accent-purple-light);
   background-color: var(--color-bg-secondary);
   z-index: 2;
+  padding: 10px;
+}
+
+.task__form--description {
+  border-radius: 0;
+  width: 200px;
+  border: none;
+  border-bottom: 1px dashed var(--color-accent-purple-light);
+}
+.task__form--title {
+  border-radius: 0;
+  width: 200px;
+  border: none;
+  border-bottom: 1px dashed var(--color-accent-purple-light);
+}
+
+.task--form__submit,
+.task--form__cancel {
+  width: 150px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  background-color: var(--color-accent-purple-light);
+  color: var(--color-bg-secondary);
+  border-radius: 10px;
+  padding: 5px 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.task--form__cancel {
+  background-color: var(--color-accent-red);
+  margin-bottom: 0;
+}
+
+.task--form__cancel:hover,
+.task--form__submit:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
 }
 
 .edit-form {

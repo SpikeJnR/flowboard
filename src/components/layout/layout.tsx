@@ -19,6 +19,7 @@ const Layout = () => {
   const userEmail = useAppSelector(getUserEmail);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
+
   if (pathname === '/login') {
     return <Outlet />;
   }
