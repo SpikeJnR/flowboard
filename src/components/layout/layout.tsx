@@ -1,7 +1,12 @@
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../utils/const.ts';
 import { useAppSelector } from '../../hooks/hooks-selectors.ts';
-import { getAuthStatus, getUserName, getUserPhoto } from '../../store/user-slice/user-selectors.ts';
+import {
+  getAuthStatus,
+  getUserEmail,
+  getUserName,
+  getUserPhoto
+} from '../../store/user-slice/user-selectors.ts';
 import { useState } from 'react';
 import UserMenu from '../user-menu';
 
@@ -11,6 +16,7 @@ const Layout = () => {
   const authStatus = useAppSelector(getAuthStatus);
   const photoUrl = useAppSelector(getUserPhoto);
   const userName = useAppSelector(getUserName);
+  const userEmail = useAppSelector(getUserEmail);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   if (pathname === '/login') {
@@ -28,14 +34,19 @@ const Layout = () => {
           {authStatus === AuthorizationStatus.AUTH ? (
             <div className='user-menu__wrapper'>
               <div className='layout__nav-user-menu'>
-                <img className='user__name-photo' src={photoUrl} width='50px' height='50px'></img>
-                <p className='layout__name'>{userName}</p>
                 <button className='user__button' onClick={() => setUserMenuOpen(!userMenuOpen)}>
-                  <img className='user__button-arrow' src='../public/images/arrow-down.svg' />
+                  <img className='user__button-arrow' src='/images/menu.svg' />
                 </button>
+                <span className='layout__name'>
+                  <p className='user-menu__name'>{userName}</p>
+                  <p className='user-menu__email'>({userEmail})</p>
+                </span>
+                <img className='user__name-photo' src={photoUrl} width='50px' height='50px'></img>
               </div>
 
-              {userMenuOpen && <UserMenu setUserMenuOpen={setUserMenuOpen} />}
+              {userMenuOpen && (
+                <UserMenu setUserMenuOpen={setUserMenuOpen} userMenuOpen={userMenuOpen} />
+              )}
             </div>
           ) : (
             <button

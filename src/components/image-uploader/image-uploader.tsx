@@ -5,7 +5,7 @@ type Props = {
   setIsLoadingPhoto: (url: boolean) => void;
 };
 
-const MAX_FILE_SIZE_MB = 5;
+const MAX_FILE_SIZE_MB = 0.1;
 
 const ImageUploader = ({ setPhoto, setIsLoadingPhoto }: Props) => {
   const [url, setUrl] = useState<string | null>(null);
