@@ -16,7 +16,8 @@ const TaskForm = ({ status }: TaskFormProps) => {
     addTask({
       title,
       description,
-      boardType: status
+      boardType: status,
+      priority: 4
     });
     setTitle('');
     setDescription('');

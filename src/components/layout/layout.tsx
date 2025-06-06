@@ -20,10 +20,6 @@ const Layout = () => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
-  if (pathname === '/login') {
-    return <Outlet />;
-  }
-
   useEffect(() => {
     const handleClickOutside = (evt: MouseEvent) => {
       const target = evt.target as Node;
@@ -42,9 +38,14 @@ const Layout = () => {
     document.addEventListener('keydown', handleKeyDown);
 
     return () => {
+      document.removeEventListener('click', handleClickOutside);
       document.removeEventListener('keydown', handleKeyDown);
     };
   });
+
+  if (pathname === '/login') {
+    return <Outlet />;
+  }
 
   return (
     <div className='layout'>
@@ -56,7 +57,7 @@ const Layout = () => {
         <div className='layout__nav'>
           {authStatus === AuthorizationStatus.AUTH ? (
             <div className='user-menu__wrapper'>
-              <div className='layout__nav-user-menu ' ref={userMenuRef}>
+              <div className='layout__nav-user-menu' ref={userMenuRef}>
                 <button className='user__button' onClick={() => setUserMenuOpen(!userMenuOpen)}>
                   <img className='user__button-arrow' src='/images/menu.svg' />
                 </button>

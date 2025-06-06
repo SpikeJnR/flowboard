@@ -32,10 +32,4 @@
   }
 
   --font-main: 'Roboto', sans-serif;
-
-  * {
-    transition:
-      background-color 0.4s ease,
-      color 0.4s ease;
-  }
 }
