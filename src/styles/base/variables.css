@@ -13,6 +13,7 @@
     --color-accent-red: #d90429;
     --color-accent-green: #4C956C;
     --gradient-purple: linear-gradient(#9b9bff, #7474f6);
+    --background: url('/public/images/wallpaper-light.svg');
   }
 
   &[data-theme='dark'] {
@@ -27,13 +28,8 @@
     --color-blue-darker: #3d3cdf;
     --color-blue-dark-purple: #3a1f8c;
     --gradient-purple: linear-gradient(#6b6aff, #5a59e0);
+    --background: url('public/images/wallpaper-dark.jpeg');
   }
 
   --font-main: 'Roboto', sans-serif;
-
-  * {
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
-  }
 }

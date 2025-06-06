@@ -31,7 +31,7 @@ const PrioritySelection = ({ setEditedTask, setShowPriorityPopover }: PrioritySe
             src={`/images/flag${index + 1}.svg`}
             alt={`${label} priority icon`}
           />
-          <p className='priority__title'>{label} priority</p>
+          <span className='priority__title'>{label} priority</span>
         </div>
       ))}
     </div>

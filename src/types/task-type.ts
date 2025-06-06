@@ -5,5 +5,5 @@ export type TaskType = {
   boardType: string;
   completedStatus: boolean;
   deadline?: Date | null;
-  priority?: number | null; // Делаем поле опциональным
+  priority: number;
 };

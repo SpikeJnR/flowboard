@@ -11,7 +11,6 @@ const useTheme = () => {
 
   const applyTheme = (newTheme: string, isUserAuthenticated: boolean) => {
     const finalTheme = isUserAuthenticated ? newTheme : Theme.LIGHT;
-
     document.documentElement.setAttribute('data-theme', finalTheme);
     setThemeState(finalTheme);
 

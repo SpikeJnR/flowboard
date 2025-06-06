@@ -41,7 +41,7 @@ export const Priority = {
   HIGH: 'High',
   MEDIUM: 'Medium',
   NORMAL: 'Normal',
-  NO_PRIORITY: 'No priority'
+  NO_PRIORITY: 'No '
 };
 
 export const Theme = {
