@@ -25,6 +25,7 @@
   align-items: center;
   background-color: var(--color-bg-secondary);
   border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
   z-index: 1;
 }
 

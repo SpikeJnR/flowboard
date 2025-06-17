@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "C:\\Users\\user\\WebstormProjects\\flowboard\\dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

@@ -8,8 +8,8 @@
 
 * {
   transition:
-    background-color 1s ease,
-    color 1s ease;
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 html {
@@ -18,7 +18,7 @@ html {
 }
 
 body {
-  background-color: rgba(150, 127, 156, 0.8);
+  background-attachment: fixed;
   background-image: var(--background);
   background-size: cover;
   color: var(--color-text-primary);

@@ -7,28 +7,38 @@
     --color-accent-purple: #7677f4;
     --color-accent-purple-light: #9b9bff;
     --color-accent-purple-darker: #7474f6;
-    --color-blue: #3938e5;
-    --color-blue-darker: #1a1ac7;
-    --color-blue-dark-purple: #1f0059;
-    --color-accent-red: #d90429;
-    --color-accent-green: #4C956C;
+
+    --color-blue: #3b4cc0;
+    --color-blue-darker: #2b3a99;
+    --color-blue-dark-purple: #1c2866;
+
+    --color-accent-red: #b03045;
+    --color-accent-green: #3e7e5d;
+
     --gradient-purple: linear-gradient(#9b9bff, #7474f6);
     --background: url('/public/images/wallpaper-light.svg');
+    --arrow-down: url('public/images/arrow-down-light.svg');
   }
 
   &[data-theme='dark'] {
-    --color-bg-primary: #1a1a1a;
-    --color-bg-secondary: #2d2d2d;
-    --color-text-primary: #ffffff;
-    --color-text-secondary: #cccccc;
-    --color-accent-purple: #8a89ff;
-    --color-accent-purple-light: #6b6aff;
-    --color-accent-purple-darker: #5a59e0;
-    --color-blue: #5251ff;
-    --color-blue-darker: #3d3cdf;
-    --color-blue-dark-purple: #3a1f8c;
+    --color-bg-primary: #1e1e2f;
+    --color-bg-secondary: #2a2a40;
+    --color-text-primary: #f1f1f1;
+    --color-text-secondary: #a4a6a9;
+    --color-accent-purple: #8889ff;
+    --color-accent-purple-light: #a2a3ff;
+    --color-accent-purple-darker: #5c5de0;
+
+    --color-blue: #4a5ed3;
+    --color-blue-darker: #3648a3;
+    --color-blue-dark-purple: #24234c;
+
+    --color-accent-red: #b03a58;
+    --color-accent-green: #5e9f76;
+
     --gradient-purple: linear-gradient(#6b6aff, #5a59e0);
     --background: url('public/images/wallpaper-dark.jpeg');
+    --arrow-down: url('public/images/arrow-down-dark.svg');
   }
 
   --font-main: 'Roboto', sans-serif;

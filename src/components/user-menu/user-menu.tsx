@@ -25,7 +25,7 @@ const UserMenu = ({ setUserMenuOpen, userMenuOpen }: UserMenuProps) => {
       navigate(AppRoute.ROOT);
       setUserMenuOpen(false);
     } catch (error) {
-      console.error('Ошибка выхода:', error);
+      console.error(error);
     }
   };
 
