@@ -37,12 +37,10 @@ const TaskItem = ({ board, setSelectedTask }: TaskItemProps) => {
             <div className={`task__wrapper--marker ${getPriority(task)}`}></div>
             <div className='task__main'>
               <button
-                className={`task__button ${task.completedStatus ? 'task__checked' : null}`}
+                className={`task__button ${task.completedStatus ? 'task__checked' : ''}`}
                 onClick={() => getChecked(task)}
               />
-              <span
-                className={`task__title ${task.completedStatus ? 'task__title-checked' : null}`}
-              >
+              <span className={`task__title ${task.completedStatus ? 'task__title-checked' : ''}`}>
                 {task.title}
               </span>
               <button
@@ -59,7 +57,13 @@ const TaskItem = ({ board, setSelectedTask }: TaskItemProps) => {
               <div className='task__bottom'>
                 {task.deadline ? (
                   <span className='task__deadline' title='TaskItem deadline'>
-                    <img className='calendar' src='../public/images/calendar.svg' alt='calendar' />
+                    <img
+                      className='calendar'
+                      src='../public/images/calendar.svg'
+                      alt='calendar'
+                      width='24px'
+                      height='24px'
+                    />
                     <span className='deadline__title'>{`${Days[task.deadline.getMonth()]} ${task.deadline.getDate()}`}</span>
                   </span>
                 ) : null}
@@ -69,9 +73,11 @@ const TaskItem = ({ board, setSelectedTask }: TaskItemProps) => {
                       className='priority'
                       src={`../public/images/flag${task.priority}.svg`}
                       alt='priority'
+                      width='24px'
+                      height='24px'
                     />
-                    <span className={`priority__title ${getPriority(task)}`}>
-                      {` ${Object.values(Priority)[task.priority - 1]} priority`}
+                    <span className={`priority__title ${getPriority(task)}-bottom`}>
+                      {`${Object.values(Priority)[task.priority - 1]} priority`}
                     </span>
                   </span>
                 ) : null}

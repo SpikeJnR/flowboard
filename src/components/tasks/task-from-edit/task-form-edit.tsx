@@ -140,7 +140,9 @@ const TaskFormEdit: React.FC<TaskFormEditProps> = ({ task }) => {
                 src={`../public/images/flag${editedTask.priority}.svg`}
                 alt='priority'
               />
-              <p className='edit-form__priority'>{`${Object.values(Priority)[editedTask.priority - 1]} priority`}</p>
+              <p
+                className={`edit-form__priority`}
+              >{`${Object.values(Priority)[editedTask.priority - 1]} priority`}</p>
             </span>
           </button>
           {showPriorityPopover && (

@@ -9,6 +9,7 @@
 @import 'styles/components/task.css';
 @import 'styles/loading-screen/loading-screen.css';
 @import 'styles/user-screen/user-screen.css';
+@import 'styles/main-screen.css';
 
 @font-face {
   font-family: 'Roboto';

@@ -35,6 +35,10 @@ export const handleAddPassword = async (password: string) => {
   try {
     await reauthenticateWithPopup(user, new GoogleAuthProvider());
 
+    if (!user.email) {
+      throw new Error('User email is null. Cannot reauthenticate.');
+    }
+
     const credential = EmailAuthProvider.credential(user.email, password);
 
     await linkWithCredential(user, credential);

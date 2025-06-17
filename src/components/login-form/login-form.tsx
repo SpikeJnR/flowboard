@@ -22,6 +22,11 @@ const LoginForm = ({ isLogin }: LoginFormProps) => {
   const { validateEmail, validatePassword } = useValidate;
 
   useEffect(() => {
+    setIsEmailError(null);
+    setIsPasswordError(null);
+  }, [isLogin]);
+
+  useEffect(() => {
     const timeout = setTimeout(() => {
       if (!email) {
         setIsEmailError(null);
@@ -63,7 +68,7 @@ const LoginForm = ({ isLogin }: LoginFormProps) => {
       ) {
         setIsPasswordError('Make sure that the email and password are entered correctly.');
       }
-      console.error(error);
+      setIsEmailError('Email already in use, change email');
     }
   };
 

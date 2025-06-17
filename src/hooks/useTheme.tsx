@@ -28,7 +28,7 @@ const useTheme = () => {
       const localTheme = isAuthenticated ? localStorage.getItem('theme') : null;
       const newTheme = serverTheme || localTheme || Theme.LIGHT;
       applyTheme(newTheme, isAuthenticated);
-    } catch (error) {
+    } catch {
       applyTheme(Theme.LIGHT, isAuthenticated);
     }
   };

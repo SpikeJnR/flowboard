@@ -8,7 +8,7 @@
 }
 
 .deadline__title {
-  color: var(--color-accent-purple-darker);
+  color: var(--color-accent-purple-light);
 }
 
 .delete__button,
@@ -20,6 +20,8 @@
   background-color: transparent;
   border: none;
   border-radius: 10px;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .delete__button {
@@ -112,7 +114,7 @@
   padding-right: 2rem;
   color: var(--color-bg-secondary);
   background-color: transparent;
-  background-image: url('public/images/arrow-down.svg');
+  background-image: var(--arrow-down);
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1rem;
@@ -252,10 +254,15 @@
   transition: transform 0.3s ease;
 }
 
+.task__deadline {
+  display: flex;
+}
+
 .task__bottom {
   display: flex;
   justify-content: space-between;
-  padding: 0 55px;
+  align-items: center;
+  padding: 0 50px;
 }
 
 .task__bottom-priority {
@@ -293,6 +300,13 @@
   border: none;
   border-bottom: 1px dashed var(--color-accent-purple-light);
   border-radius: 0;
+  background-color: transparent;
+  color: var(--color-accent-purple-light);
+}
+
+.task__form--description::placeholder,
+.task__form--title::placeholder {
+  color: var(--color-accent-purple-light);
 }
 
 .task__full-size {
@@ -436,4 +450,16 @@
 .blue__priority {
   color: var(--color-blue);
   border-top: 10px solid var(--color-blue);
+}
+
+.red__priority-bottom {
+  color: var(--color-accent-red);
+}
+
+.green__priority-bottom {
+  color: var(--color-accent-green);
+}
+
+.blue__priority-bottom {
+  color: var(--color-blue);
 }

@@ -5,7 +5,7 @@ type Props = {
   setIsLoadingPhoto: (url: boolean) => void;
 };
 
-const MAX_FILE_SIZE_MB = 0.1;
+const MAX_FILE_SIZE_MB = 5;
 
 const ImageUploader = ({ setPhoto, setIsLoadingPhoto }: Props) => {
   const [url, setUrl] = useState<string | null>(null);
@@ -48,8 +48,12 @@ const ImageUploader = ({ setPhoto, setIsLoadingPhoto }: Props) => {
 
       setUrl(data.secure_url);
       setPhoto(data.secure_url);
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('An unknown error occurred.');
+      }
     } finally {
       setIsLoading(false);
       setIsLoadingPhoto(false);
